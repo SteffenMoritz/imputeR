@@ -10,7 +10,7 @@ SimEval(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
   \item{data}{is the complete data matrix that will be used
   for simulation}
 
-  \item{taks}{type, either be 1 for regression, 2 for
+  \item{task}{task type, either be 1 for regression, 2 for
   classification or 3 for mixed type}
 
   \item{p}{is the percentage of missing values that will be
@@ -42,17 +42,17 @@ SimEval(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
   including missing values and returns a complete data
   matrix.}
 
-  \item{logical,}{if TRUE, additional output information
-  will be provided during iterations, i.e., the method that
-  is using, the iteration number, the convegence difference
-  as compared to the precious iteration. The progression
-  bar will show up irrespective of this option and it can
-  not be got rid of.}
+  \item{verbose}{logical, if TRUE, additional output
+  information will be provided during iterations, i.e., the
+  method that is using, the iteration number, the
+  convegence difference as compared to the precious
+  iteration. The progression bar will show up irrespective
+  of this option and it can not be got rid of.}
 
-  \item{set}{the seed for simulation so simulations using
-  different imputation methods are comparable. The default
-  value is set to 1234, which is not supposed to mean
-  anything. But if 1234 is used, then the seed for
+  \item{seed}{set the seed for simulation so simulations
+  using different imputation methods are comparable. The
+  default value is set to 1234, which is not supposed to
+  mean anything. But if 1234 is used, then the seed for
   simulating the first missing data matrix is 1234, then it
   sums by one for every subsequent simulationg data
   matrix.}

@@ -8,7 +8,7 @@ otherIm(method = NULL, misdata = simdata, truedata = data, ...)
   \item{method}{is the imputation method, possibly from
   other packages}
 
-  \item{missdata}{is the missing data need to be imputed}
+  \item{misdata}{is the missing data need to be imputed}
 
   \item{truedata}{is the true data matrix}
 

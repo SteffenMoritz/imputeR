@@ -10,6 +10,8 @@ plotIm(imp, mis, true, ...)
   \item{mis}{the missing data matrix}
 
   \item{true,}{the true data matrix}
+
+  \item{...}{other arguments that can be passed to plot}
 }
 \description{
 this is a plot function for assessing imputation

@@ -1,14 +1,11 @@
 \name{impute-package}
 \alias{impute-package}
-\alias{impute}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+Impute missing values by automated variable selection
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+The function 'impute' in this package is the main function that uses variable selection to impute missing values. Many different variable selection methods have been incorporated in this package and they are listed in the mannual. 
 }
 \details{
 \tabular{ll}{
@@ -16,26 +13,17 @@ Package: \tab impute\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2014-03-14\cr
-License: \tab What license is it under?\cr
+License: GPL (>= 2)
 }
-~~ An overview of how to use the package, including the most important functions ~~
+The function 'impute' in this package is the main function that uses variable selection to impute missing values. Many different variable selection methods have been incorporated in this package and they are listed in the mannual. 
 }
 \author{
-Who wrote it
+Lingbing Feng
+Maintainer: Lingbing Feng <fenglb88@gmail.com>
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
 }
-\references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
-\keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
+
+\keyword{imputation, variable selection}
 \examples{
-~~ simple examples of the most important functions ~~
+a <- 1
 }

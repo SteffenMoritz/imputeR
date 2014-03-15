@@ -29,15 +29,9 @@ SimIm <- function(data, p = 0.1) {
 #' @param imp the imputaed data matrix
 #' @param mis the missing data matrix
 #' @param true the true data matrix
-#' @param logical, if TRUE then the normalized RMSE will be returned
+#' @param norm logical, if TRUE then the normalized RMSE will be returned
 #' 
 #' @export
-#' @examples 
-#' set.seed(1234)
-#' data <- rnorm(100)
-#' misdata <- SimIm(data, p = 0.1)
-#' impdata <- guess(data)
-#' rmse <- Rmse(impdata, misdata, data)
 Rmse <- function(imp, mis, true, norm = FALSE) {
   # if norm is true, calculate the normalised RMSE
   # coerce both matrices into vectors
@@ -86,8 +80,8 @@ mr <- function(imp, mis, true) {
 #' @param imp the imputed data matrix
 #' @param mis the missing data matrix
 #' @param true, the true data matrix
-#' 
-#' @exports
+#' @param ... other arguments that can be passed to plot
+#' @export
 plotIm <- function(imp, mis, true, ...) {
   imp <- as.matrix(imp)
   mis <- as.matrix(mis)
@@ -105,7 +99,7 @@ plotIm <- function(imp, mis, true, ...) {
 #' This function uses some other imputation methods that are not introduced in
 #' our package. 
 #' @param method is the imputation method, possibly from other packages
-#' @param missdata is the missing data need to be imputed
+#' @param misdata is the missing data need to be imputed
 #' @param truedata is the true data matrix
 #' @param ... some other arguments that can be passed to method
 #' 
@@ -134,7 +128,7 @@ otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
 #' Evaluate the performance of a imputation method by simulation
 #' 
 #' @param data is the complete data matrix that will be used for simulation
-#' @param taks type, either be 1 for regression, 2 for classification or 3 for
+#' @param task task type, either be 1 for regression, 2 for classification or 3 for
 #' mixed type
 #' @param p is the percentage of missing values that will be introduction into
 #'   data, it has to be a value between 0 and 1
@@ -150,12 +144,12 @@ otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
 #' @param other some other imputation method that is based on variable selection
 #'   can be used. The requirement for this 'other' method is strict: it receives
 #'   a data matrix including missing values and returns a complete data matrix.
-#' @param logical, if TRUE, additional output information will be provided 
+#' @param verbose logical, if TRUE, additional output information will be provided 
 #'   during iterations, i.e., the method that is using, the iteration number,
 #'   the convegence difference as compared to the precious iteration. The 
 #'   progression bar will show up irrespective of this option and it can not be
 #'   got rid of. 
-#'   @param set the seed for simulation so simulations using different imputation
+#'   @param seed set the seed for simulation so simulations using different imputation
 #'   methods are comparable. The default value is set to 1234, which is not supposed to 
 #'   mean anything. But if 1234 is used, then the seed for simulating the first
 #'   missing data matrix is 1234, then it sums by one for every subsequent
@@ -244,6 +238,7 @@ if (guess | !is.null(other)) {
 #' vector, (2) it contains no more than n = 5 unique values
 #' @param x is the data matrix that need to be detected. 
 #' @param n is a number, indicating how many levels, if outnumbered, can be seen
+#' @param ... other arguments
 #' as an numeric variable, rather than a categorical variable. 
 Detect <- function(x, n = 5, ...) {
   if (!is.matrix(x) & !is.data.frame(x)) {

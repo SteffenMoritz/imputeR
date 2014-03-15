@@ -7,7 +7,7 @@
 #' @param ini the method for initilisation, could be 
 #' @param pred.type is the prediction type. It is no useful now
 #' @param maxiter is the maximum number of interations
-#' @verbose verbost is logical, if TRUE then detailed information will
+#' @param verbose is logical, if TRUE then detailed information will
 #' be printed in the console while running.
 #' @export
 #' @return if conv = FALSE, then a completed data matrix, if TRUE, a list

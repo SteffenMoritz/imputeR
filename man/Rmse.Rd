@@ -11,18 +11,11 @@ Rmse(imp, mis, true, norm = FALSE)
 
   \item{true}{the true data matrix}
 
-  \item{logical,}{if TRUE then the normalized RMSE will be
-  returned}
+  \item{norm}{logical, if TRUE then the normalized RMSE
+  will be returned}
 }
 \description{
 This function calculate imputation error given the imputed
 data, the missing data and the true data
-}
-\examples{
-set.seed(1234)
-data <- rnorm(100)
-misdata <- SimIm(data, p = 0.1)
-impdata <- guess(data)
-rmse <- Rmse(impdata, misdata, data)
 }
 
