@@ -17,6 +17,12 @@ stepBothC <- function(x, y, ...) {
   return(model)
 }
 
+#' Best subset for classification (backward)
+#' 
+#' Best subset variable selection from both forward and backward
+#' direction for categorical data
+#' @param x predictor matrix
+#' @param y response vector
 stepBackC <- function(x, y, ...) {
   # step back selection for classification
   
@@ -29,6 +35,13 @@ stepBackC <- function(x, y, ...) {
   return(model)
 }
 
+
+#' Best subset for classification (forward direction)
+#' 
+#' Best subset variable selection from both forward and backward
+#' direction for categorical data
+#' @param x predictor matrix
+#' @param y response vector
 stepForC <- function(x, y, ...) {
   # step forward selection for classification
   
@@ -41,6 +54,7 @@ stepForC <- function(x, y, ...) {
                 trace = 0, direction = "forward")
   return(model)
 }
+
 
 # rpart
 rpartC <- function(x, y) {
