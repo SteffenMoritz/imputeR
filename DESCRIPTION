@@ -14,7 +14,13 @@ Depends:
     gbm,
     RRF,
     ridge,
-    glmnet
+    glmnet, 
+    Cubist,
+    SpatioTemporal,
+    rpart,
+    tree,
+    lars,
+    earth
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
 Description: The function 'impute' in this package is the main function that
     uses variable selection to impute missing values. Many different
