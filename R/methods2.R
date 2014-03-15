@@ -5,7 +5,7 @@
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-stepBothC <- function(x, y, ...) {
+stepBothC <- function(x, y) {
   # stepwise both for classification
   
   impdata <- data.frame(cbind(y, x))
@@ -25,7 +25,7 @@ stepBothC <- function(x, y, ...) {
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-stepBackC <- function(x, y, ...) {
+stepBackC <- function(x, y) {
   # step back selection for classification
   
   impdata <- data.frame(cbind(y, x))
@@ -45,7 +45,7 @@ stepBackC <- function(x, y, ...) {
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-stepForC <- function(x, y, ...) {
+stepForC <- function(x, y) {
   # step forward selection for classification
   
   impdata <- data.frame(cbind(y, x))

@@ -1,0 +1,16 @@
+\name{stepBothC}
+\alias{stepBothC}
+\title{Best subset for classification (both direction)}
+\usage{
+stepBothC(x, y)
+}
+\arguments{
+  \item{x}{predictor matrix}
+
+  \item{y}{response vector}
+}
+\description{
+Best subset variable selection from both forward and
+backward direction for categorical data
+}
+

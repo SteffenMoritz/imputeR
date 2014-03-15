@@ -6,7 +6,7 @@
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-stepBothR <- function(x, y, ...) {
+stepBothR <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
   null <- lm(y~1, data = impdata)
@@ -23,7 +23,7 @@ stepBothR <- function(x, y, ...) {
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-stepBackR <- function(x, y, ...) {
+stepBackR <- function(x, y) {
   # step back selection for regression
   
   impdata <- data.frame(cbind(y, x))
@@ -41,7 +41,7 @@ stepBackR <- function(x, y, ...) {
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-stepForR <- function(x, y, ...) {
+stepForR <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
   null <- lm(y~1, data = impdata)
@@ -85,7 +85,7 @@ ridgeR <- function(x, y) {
 #' @param x predictor matrix
 #' @param y response vector
 #' @export
-glmboostR <- function(x, y, ...) {
+glmboostR <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
   t.model <- glmboost(y~., data = impdata,

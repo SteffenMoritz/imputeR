@@ -14,7 +14,7 @@ Depends:
     gbm,
     RRF,
     ridge,
-    glmnet, 
+    glmnet,
     Cubist,
     SpatioTemporal,
     rpart,

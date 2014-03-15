@@ -238,9 +238,9 @@ if (guess | !is.null(other)) {
 #' vector, (2) it contains no more than n = 5 unique values
 #' @param x is the data matrix that need to be detected. 
 #' @param n is a number, indicating how many levels, if outnumbered, can be seen
-#' @param ... other arguments
 #' as an numeric variable, rather than a categorical variable. 
-Detect <- function(x, n = 5, ...) {
+#' @export
+Detect <- function(x, n = 5) {
   if (!is.matrix(x) & !is.data.frame(x)) {
     stop("x has to be either a matrix or data frame")
   }

@@ -1,0 +1,15 @@
+\name{ridgeC}
+\alias{ridgeC}
+\title{Ridge regression with lasso for imputation}
+\usage{
+ridgeC(x, y)
+}
+\arguments{
+  \item{x}{predictor matrix}
+
+  \item{y}{response vector}
+}
+\description{
+Ridge regression with lasso for imputation
+}
+

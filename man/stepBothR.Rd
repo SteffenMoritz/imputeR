@@ -1,0 +1,16 @@
+\name{stepBothR}
+\alias{stepBothR}
+\title{Best subset for regression (both direction)}
+\usage{
+stepBothR(x, y)
+}
+\arguments{
+  \item{x}{predictor matrix}
+
+  \item{y}{response vector}
+}
+\description{
+Best subset variable selection from both forward and
+backward direction for continuous data
+}
+

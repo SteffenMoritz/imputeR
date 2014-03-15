@@ -1,0 +1,15 @@
+\name{glmboostR}
+\alias{glmboostR}
+\title{Boosting for regression}
+\usage{
+glmboostR(x, y)
+}
+\arguments{
+  \item{x}{predictor matrix}
+
+  \item{y}{response vector}
+}
+\description{
+boosting variable selection for continuous data
+}
+

@@ -1,0 +1,16 @@
+\name{stepForC}
+\alias{stepForC}
+\title{Best subset for classification (forward direction)}
+\usage{
+stepForC(x, y)
+}
+\arguments{
+  \item{x}{predictor matrix}
+
+  \item{y}{response vector}
+}
+\description{
+Best subset variable selection from both forward and
+backward direction for categorical data
+}
+
