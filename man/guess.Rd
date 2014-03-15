@@ -1,0 +1,21 @@
+\name{guess}
+\alias{guess}
+\title{Impute by guessing}
+\usage{
+guess(x, type = "mean")
+}
+\arguments{
+  \item{x}{a matrix or data frame}
+
+  \item{type}{is the guessing type, including "mean" for
+  mean imputation, "median" for median imputation, "random"
+  for random guess, and "majority" for majority imputation
+  for categorical variables.}
+}
+\description{
+This function use some primitive methods, including mean
+imputation, median imputation, random guess, or majority
+imputation (only for categorical variables), to impute a
+missing data matrix.
+}
+

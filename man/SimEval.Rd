@@ -1,0 +1,64 @@
+\name{SimEval}
+\alias{SimEval}
+\title{Evaluate the performance of a imputation method by simulation}
+\usage{
+SimEval(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
+  method = NULL, guess = FALSE, guess.type = NULL, other = NULL,
+  verbose = TRUE, seed = 1234)
+}
+\arguments{
+  \item{data}{is the complete data matrix that will be used
+  for simulation}
+
+  \item{taks}{type, either be 1 for regression, 2 for
+  classification or 3 for mixed type}
+
+  \item{p}{is the percentage of missing values that will be
+  introduction into data, it has to be a value between 0
+  and 1}
+
+  \item{n.sim}{the number of simulations, default is 100
+  times}
+
+  \item{ini}{is the initialization setting for some
+  relevant imputation methods , the default setting is
+  "mean", while "median" and "random" can also be used. See
+  also \code{\link{guess}}}
+
+  \item{method}{the imputaion method based on variable
+  selection for simulation some other imputation method can
+  be passed to the 'other' argument}
+
+  \item{guess}{logical value, if is TRUE, then
+  \code{\link{guess}} will be used as the imputation method
+  for simulation}
+
+  \item{guess.type,}{guess type for the guess function. It
+  cannot be NULL if guess is TRUE}
+
+  \item{other}{some other imputation method that is based
+  on variable selection can be used. The requirement for
+  this 'other' method is strict: it receives a data matrix
+  including missing values and returns a complete data
+  matrix.}
+
+  \item{logical,}{if TRUE, additional output information
+  will be provided during iterations, i.e., the method that
+  is using, the iteration number, the convegence difference
+  as compared to the precious iteration. The progression
+  bar will show up irrespective of this option and it can
+  not be got rid of.}
+
+  \item{set}{the seed for simulation so simulations using
+  different imputation methods are comparable. The default
+  value is set to 1234, which is not supposed to mean
+  anything. But if 1234 is used, then the seed for
+  simulating the first missing data matrix is 1234, then it
+  sums by one for every subsequent simulationg data
+  matrix.}
+}
+\description{
+Evaluate the performance of a imputation method by
+simulation
+}
+
