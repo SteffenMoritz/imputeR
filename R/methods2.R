@@ -55,7 +55,11 @@ stepForC <- function(x, y, ...) {
   return(model)
 }
 
-
+#' classification tree for imputation
+#' 
+#' classification tree for imputation
+#' @param x predictor matrix
+#' @param y response vector
 # rpart
 rpartC <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
@@ -63,7 +67,11 @@ rpartC <- function(x, y) {
   return(model)
 }
 
-# rda
+#' regularised LDA method for imputation
+#' 
+#' regularised LDA method for imputation
+#' @param x predictor matrix
+#' @param y response vector
 rdaC <- function(x, y) {
   y <- as.numeric(y)
   x <- t(x)
@@ -75,7 +83,11 @@ rdaC <- function(x, y) {
   return(list(x = x , y = y, fit = fit, alpha = cv.alpha, delta = cv.delta))
 }
 
-# logistic lasso
+#' logistic regression with lasso for imputation
+#' 
+#' logistic regression with lasso for imputation
+#' @param x predictor matrix
+#' @param y response vector
 lassoC <- function(x, y) {
   # LASSO for logistic regression
   
@@ -84,17 +96,23 @@ lassoC <- function(x, y) {
   return(model)
 }
 
-# logistic ridge
+#' Ridge regression with lasso for imputation
+#' 
+#' Ridge regression with lasso for imputation
+#' @param x predictor matrix
+#' @param y response vector
 ridgeC <- function(x, y) {
-  # ridge regression, lambda is chosen automatically
-  
   impdata <- data.frame(cbind(y, x))
   model <- logisticRidge(y~., data = impdata)
   return(model)
 }
 
-# gbm
 
+#' boosting tree for imputation
+#' 
+#' boosting tree for imputation
+#' @param x predictor matrix
+#' @param y response vector
 gbmC <- function(x, y) {
   y <- as.numeric(y)
   impdata <- data.frame(cbind(y, x))
