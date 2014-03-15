@@ -5,6 +5,7 @@
 #' direction for continuous data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 stepBothR <- function(x, y, ...) {
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
@@ -21,6 +22,7 @@ stepBothR <- function(x, y, ...) {
 #' Best subset variable selection (backward direction) for continuous data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 stepBackR <- function(x, y, ...) {
   # step back selection for regression
   
@@ -38,6 +40,7 @@ stepBackR <- function(x, y, ...) {
 #' Best subset variable selection (forward direction) for continuous data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 stepForR <- function(x, y, ...) {
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
@@ -55,6 +58,7 @@ stepForR <- function(x, y, ...) {
 #' LASSO variable selection for continuous data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 lassoR <- function(x, y) {
   # LASSO for variable selection
   
@@ -68,6 +72,7 @@ lassoR <- function(x, y) {
 #' Ridge shrinkage variable selection for continuous data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 ridgeR <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   model <- linearRidge(y~., data = impdata)
@@ -79,6 +84,7 @@ ridgeR <- function(x, y) {
 #' boosting variable selection for continuous data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 glmboostR <- function(x, y, ...) {
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
@@ -95,6 +101,7 @@ glmboostR <- function(x, y, ...) {
 #' Principle component regression method for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 pcrR <- function(x, y) {
   
   impdata <- data.frame(cbind(y, x))
@@ -107,6 +114,7 @@ pcrR <- function(x, y) {
 #' Principle component regression method for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 plsR <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   model <- plsr(y~., data = impdata, ncomp = 2)
@@ -118,6 +126,7 @@ plsR <- function(x, y) {
 #' Quinlan's Cubist model for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 CubistR <- function(x, y) {
   cTune <- train(x = x, y = y, "cubist",
                  tuneGrid = expand.grid(.committees = c(1, 10, 50, 100),

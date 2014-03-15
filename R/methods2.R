@@ -4,6 +4,7 @@
 #' direction for categorical data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 stepBothC <- function(x, y, ...) {
   # stepwise both for classification
   
@@ -23,6 +24,7 @@ stepBothC <- function(x, y, ...) {
 #' direction for categorical data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 stepBackC <- function(x, y, ...) {
   # step back selection for classification
   
@@ -42,6 +44,7 @@ stepBackC <- function(x, y, ...) {
 #' direction for categorical data
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 stepForC <- function(x, y, ...) {
   # step forward selection for classification
   
@@ -60,7 +63,7 @@ stepForC <- function(x, y, ...) {
 #' classification tree for imputation
 #' @param x predictor matrix
 #' @param y response vector
-# rpart
+#' @export
 rpartC <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   model <- rpart(y~., data = impdata, method = "class")
@@ -72,6 +75,7 @@ rpartC <- function(x, y) {
 #' regularised LDA method for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 rdaC <- function(x, y) {
   y <- as.numeric(y)
   x <- t(x)
@@ -88,6 +92,7 @@ rdaC <- function(x, y) {
 #' logistic regression with lasso for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 lassoC <- function(x, y) {
   # LASSO for logistic regression
   
@@ -101,6 +106,7 @@ lassoC <- function(x, y) {
 #' Ridge regression with lasso for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 ridgeC <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   model <- logisticRidge(y~., data = impdata)
@@ -113,6 +119,7 @@ ridgeC <- function(x, y) {
 #' boosting tree for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @export
 gbmC <- function(x, y) {
   y <- as.numeric(y)
   impdata <- data.frame(cbind(y, x))
