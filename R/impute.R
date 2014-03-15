@@ -5,8 +5,11 @@
 #' @param cFun the variable selection method for categorical data.
 #' @param conv if is TRUE, then convergence status will be returned.
 #' @param ini the method for initilisation, could be 
+#' @param pred.type is the prediction type. It is no useful now
 #' @param maxiter is the maximum number of interations
-#'  
+#' @verbose verbost is logical, if TRUE then detailed information will
+#' be printed in the console while running.
+#' @export
 #' @return if conv = FALSE, then a completed data matrix, if TRUE, a list
 
 impute <- function(missdata, lmFun = NULL, cFun = NULL, conv = TRUE, 
