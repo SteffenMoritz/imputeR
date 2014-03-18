@@ -244,21 +244,23 @@ Detect <- function(x, n = 5) {
   if (!is.matrix(x) & !is.data.frame(x)) {
     stop("x has to be either a matrix or data frame")
   }
+  x <- as.data.frame(x)
+  is.n <- function(i) {
+    (is.numeric(i) || is.integer(i) || is.double(i))
+  }
   
   f.new <- function(z) {
-    
     if (is.factor(z)) {
       return ("character")
-    } else if (is.numeric(z) && length(unique(unclass(x))) > n) {
-      # using class here to avoid the warnings if applied to a factor
-      return ("numeric")
+    } else if (is.n(z) && length(unique(unclass(z))) > n) {
+      return("numeric")
     } else {
-      return ("character")
+      return("character")
     }
   }
   p <- sapply(x, f.new)
   return (varType = p)
-}
+} 
 
 
 #' Impute by guessing

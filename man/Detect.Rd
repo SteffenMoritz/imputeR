@@ -2,15 +2,13 @@
 \alias{Detect}
 \title{Detect variable type in a data matrix}
 \usage{
-Detect(x, n = 5, ...)
+Detect(x, n = 5)
 }
 \arguments{
   \item{x}{is the data matrix that need to be detected.}
 
   \item{n}{is a number, indicating how many levels, if
-  outnumbered, can be seen}
-
-  \item{...}{other arguments as an numeric variable, rather
+  outnumbered, can be seen as an numeric variable, rather
   than a categorical variable.}
 }
 \description{
