@@ -72,7 +72,7 @@ mr <- function(imp, mis, true) {
   mr <- 1 - (sum(diag(errvec))/sum(errvec))
   return(mr)
 }
-  
+
 #' Plot function for imputation
 #' 
 #' this is a plot function for assessing imputation performance given the imputed data
@@ -160,7 +160,7 @@ SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
                     other = NULL, verbose = TRUE, seed = 1234) {
   if (!guess & is.null(method) & is.null(other)) {
     stop("Please provide a method to impute or you can guess by setting 'guess = TRUE'")
-    }
+  }
   if (!is.null(other)) {
     otherFun <- match.fun(other)
   }
@@ -204,28 +204,32 @@ SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
     if (!guess & is.null(other)) {
       if (task == 1) {
         time[i] <- system.time(imp <- impute(simdata, ini = ini, lmFun = Fun1, 
-                                           verbose = verbose))[3] 
+                                             verbose = verbose))[3] 
         error[i] <- Rmse(imp$imp, simdata, data, norm = TRUE)
         conv[[i]] <- length(imp$conv)
-        } else if (task == 2) {
+      } else if (task == 2) {
         time[i] <- system.time(imp <- impute(simdata, cFun = Fun2, 
                                              verbose = verbose))[3] 
         error[i] <- mr(imp$imp, simdata, data)
         conv[[i]] <- length(imp$conv)
       }
-      } else if (!is.null(other)) {
-        time[i] <- system.time(imp <- otherFun(simdata))[3]
+    } else if (!is.null(other)) {
+      time[i] <- system.time(imp <- otherFun(simdata))[3]
+      error[i] <- Rmse(imp, simdata, data, norm = TRUE)
+    } else {
+      stopifnot(!is.null(guess.type))
+      time[i] <- system.time(imp <- guess(simdata, type = guess.type))[3]
+      if (task == 1) {
         error[i] <- Rmse(imp, simdata, data, norm = TRUE)
-      } else {
-        stopifnot(!is.null(guess.type))
-        time[i] <- system.time(imp <- guess(simdata, type = guess.type))[3]
-        error[i] <- Rmse(imp, simdata, data, norm = TRUE)
+      } else if (task == 2) {
+        error[i] <- mr(imp, simdata, data)
       }
+    }
     close(pb)
   }
-if (guess | !is.null(other)) {
-  conv <- "No convergence"
-}
+  if (guess | !is.null(other)) {
+    conv <- "No convergence"
+  }
   return(list(call = as.character(substitute(method)), task = task, time = mean(time),
               error = error, conv = conv))
 }
