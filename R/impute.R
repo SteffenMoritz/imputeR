@@ -4,7 +4,15 @@
 #' @param lmFun the variable selection method for continuous data.
 #' @param cFun the variable selection method for categorical data.
 #' @param conv if is TRUE, then convergence status will be returned.
-#' @param ini the method for initilisation, could be 
+#' @param ini the method for initilisation. It is a length one character if
+#' missdata contains only one type of variables only. For continous only data, 
+#' ini can be "mean" (mean imputation), "median" (median imputation) or "random"
+#'  (random guess), the default is "mean". For categorical data, it can be 
+#'  either "majority" or "random", the default is "majority". If missdata is 
+#'  mixed of continuous and categorical data, then ini has to be a vector of two
+#'  characters, with the first element indicating the method for continous 
+#'  variables and the other element for categorical variables, and the default
+#'  is c("mean", "majority".)
 #' @param pred.type is the prediction type. It is no useful now
 #' @param maxiter is the maximum number of interations
 #' @param verbose is logical, if TRUE then detailed information will
@@ -12,22 +20,44 @@
 #' @export
 #' @return if conv = FALSE, then a completed data matrix, if TRUE, a list
 
-impute <- function(missdata, lmFun = NULL, cFun = NULL, conv = TRUE, 
-                   ini = "mean", pred.type = NULL, 
+imp <- function(missdata, lmFun = NULL, cFun = NULL, conv = TRUE, 
+                   ini = NULL, pred.type = NULL, 
                    maxiter = 100, verbose = TRUE) {
   ## Detect variable types for the missing data and distribute appropriate tasks
   Type <- Detect(missdata)
   if(all(Type == "numeric")) {
     task <- 1
+    if(is.null(ini)) {
+      ini = "mean"
+    } else {
+      stopifnot(ini %in% c("mean", "median", "random"))
+    }
     names(task) <- "Regression"
   } else if(all(Type == "character")) {
     task <- 2
+    if(is.null(ini)) {
+      ini = "majority"
+    } else {
+      stopifnot(ini %in% c("majority", "random"))
+    }
     names(task) <- 'Classification'
   } else {
     task <- 3
+    if(is.null(ini)) {
+      ini = c("mean", "majority")
+    } else {
+      if (length(ini) !=2) {
+        stop ("Data are mixed-type, provide two initial methods")
+      } else {
+        if (!(ini[1] %in% c("mean", "median", "random")) || 
+              !(ini[2] %in% c("majority", "random"))) {
+          stop ("ini has to be a two length character vector, check the help
+                about this argument and make sure you provide valid names")
+        }
+      }
+    }
     names(task) <- "Regression and Classification mixed"
   }
-  
   if (verbose) {
     cat(" We are doing task", names(task), "\n")
   }
@@ -45,7 +75,6 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, conv = TRUE,
     lmFUN <- match.fun(lmFun)
     cFUN <- match.fun(cFun)
   }
-#   browser()
   n <- nrow(missdata)
   p <- ncol(missdata)
   
@@ -58,41 +87,27 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, conv = TRUE,
         'due to the missingness of all entries\n')
   }
   
-  ## perform initial guess on miss (mean imputation)
+  ## perform initial guess on miss 
   ximp <- missdata
   if (task == 1) {
     ximp <- guess(ximp, type = ini)
   } else if (task == 2) {
-    ximp <- guess(ximp, "majority")
+    ximp <- guess(ximp, type = ini)
   } else {
-    # for mixed type only, code from 'missForest' source.
-    xAttrib <- lapply(missdata, attributes)
-    varType <- character(p)
-    for (t.co in 1:p){
-      if (is.null(xAttrib[[t.co]])) {
-        varType[t.co] <- 'numeric'
-        ximp[is.na(missdata[,t.co]),t.co] <- mean(missdata[,t.co], na.rm = TRUE)
+    for (i in seq_along(Type)) {
+      if (Type[i] == "numeric") {
+        browser()
+        ximp[is.na(missdata[, i]), i] <- guess(missdata[, i], type = ini[1])
         } else {
-          varType[t.co] <- 'factor'
-          ## take the level which is more 'likely' (majority vote)
-          max.level <- max(table(ximp[,t.co]))
-          ## if there are several classes which are major, sample one at random
-          class.assign <- sample(names(which(max.level == summary(ximp[,t.co]))), 1)
-          ## it shouldn't be the NA class
-          if (class.assign != "NA's"){
-            ximp[is.na(missdata[,t.co]),t.co] <- class.assign
-            } else {
-              while (class.assign == "NA's"){
-                class.assign <- sample(names(which(max.level ==
-                                                     summary(ximp[,t.co]))), 1)
-              }
-              ximp[is.na(missdata[,t.co]),t.co] <- class.assign
-            }
+          if (ini[2] == "majority") {
+            ximp[is.na(missdata[, i]), i] <- major(missdata[, i])
+          } else {
+            ximp[is.na(missdata[, i]), i] <- guess(missdata[, i], type = "random")
+          }
         }
     }
   }
-  
-  
+  browser()
   ## extract missingness pattern
   NAloc <- is.na(missdata)            # where are missings
   noNAvar <- apply(NAloc, 2, sum) # how many are missing in the vars

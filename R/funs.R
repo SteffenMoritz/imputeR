@@ -279,15 +279,7 @@ Detect <- function(x, n = 5) {
 #' @export
 guess <- function(x, type = "mean") {
   # this function impute a missing data matrix by some guess
-  # type can be "mean", "median", "random", or "majority" (only for discrete)
-  major <- function(x) {
-    max.level <- max(table(as.factor(x)))
-    ## if there are several classes which are major, sample one at random
-    class.assign <- sample(names(which(max.level == summary(as.factor(x)))), 1)
-    x[is.na(x)] <- class.assign
-    return(x)
-  }
-  
+  # type can be "mean", "median", "random", or "majority" (only for discrete
   switch(type,
          mean = sapply(as.data.frame(x), FUN = function(i) {
            i[is.na(i)] <- mean(i, na.rm = TRUE)
@@ -304,4 +296,20 @@ guess <- function(x, type = "mean") {
          majority = apply(sapply(as.data.frame(x), FUN = major), 2, as.numeric)
          
   )
+}
+
+#' Majority imputation for a vector
+#' 
+#' @param x a character (or numeric categorical) vector with missing values
+#' @export
+#' @example
+#' a <- c(rep(1, 20),rep(0, 5))
+#' a[24:25] <- NA
+#' b <- major(a)
+major <- function(x) {
+  max.level <- max(table(as.factor(x)))
+  ## if there are several classes which are major, sample one at random
+  class.assign <- sample(names(which(max.level == summary(as.factor(x)))), 1)
+  x[is.na(x)] <- class.assign
+  return(x)
 }
