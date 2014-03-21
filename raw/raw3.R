@@ -7,7 +7,9 @@ data <- Boston
 Detect(data)
 simdata <- SimIm(data, 0.3)
 # delete the first and 18th column, they are not numeric predictors
-data <- scale(parkinson[, -c(1, 18)])
-Detect(data)
-set.seed(1234)
-simdata <- SimIm(data, 0.1)
+lmfuns <- c("stepBackR", "stepForR", "stepBothR", "lassoR", "pcrR", "plsR",
+            "randomForest", "earth", "glmboost", "ridgeR")
+cfuns <- c("stepBackC", "stepForC", "stepBothC", "lassoC", "rpartC", "rdaC",
+           "randomForest", "gbmC", "ridgeC")
+
+try <- imputee(simdata, lmFun = lmfuns[1], cFun = cfuns[1])
