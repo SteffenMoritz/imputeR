@@ -302,10 +302,6 @@ guess <- function(x, type = "mean") {
 #' 
 #' @param x a character (or numeric categorical) vector with missing values
 #' @export
-#' @example
-#' a <- c(rep(1, 20),rep(0, 5))
-#' a[24:25] <- NA
-#' b <- major(a)
 major <- function(x) {
   max.level <- max(table(as.factor(x)))
   ## if there are several classes which are major, sample one at random
