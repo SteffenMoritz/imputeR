@@ -34,8 +34,8 @@ impute(missdata, lmFun = NULL, cFun = NULL, ini = NULL, maxiter = 100,
   information will be printed in the console while
   running.}
 
-  \item{logical,}{if TRUE, the convergence details will be
-  returned}
+  \item{conv}{logical, if TRUE, the convergence details
+  will be returned}
 }
 \value{
 if conv = FALSE, then a completed data matrix, if TRUE, a

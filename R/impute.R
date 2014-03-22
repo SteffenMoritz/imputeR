@@ -15,7 +15,7 @@
 #' @param maxiter is the maximum number of interations
 #' @param verbose is logical, if TRUE then detailed information will
 #' be printed in the console while running.
-#' @param logical, if TRUE, the convergence details will be returned
+#' @param conv logical, if TRUE, the convergence details will be returned
 #' @export
 #' @return if conv = FALSE, then a completed data matrix, if TRUE, a list
 
@@ -182,7 +182,7 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
                      c("stepBothC", "stepBackC", "stepForC", "rpartC",
                        "treeC", "gbmC", "ridgeC"))) {
           misX <- as.data.frame(misX)
-        } else {
+        } else if (task == 3) {
           if ((lmFun %in% c("stepR", "ridgeR", "stepBothR", "stepBackR", "stepForR")) ||
                 (cFun %in% c("stepBothC", "stepBackC", "stepForC", "rpartC",
                   "treeC", "gbmC", "ridgeC")))
@@ -203,7 +203,6 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
             misY <- predict(Miss, misX)
           }
         } else {
-          browser()
           obsY2 <- factor(obsY)
           summarY <- summary(obsY2)
           if (length(summarY) == 1) {
@@ -242,10 +241,8 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
     if (verbose) {
       cat('done!\n')
     }
-    
     iter <- iter + 1
     Ximp[[iter]] <- ximp
-   
     # check the difference between iteration steps
     # This implementation is really smart and is derived from the brillian MissForest
     # package source.
