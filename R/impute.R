@@ -19,7 +19,7 @@
 #' @export
 #' @return if conv = FALSE, then a completed data matrix, if TRUE, a list
 
-imputee <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL, 
+impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL, 
                    maxiter = 100, verbose = TRUE, conv = TRUE) {
   ## Detect variable types for the missing data and distribute appropriate tasks
   Type <- Detect(missdata)
@@ -251,7 +251,6 @@ imputee <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
     # package source.
     t.co2 <- 1
         for (t.type in names(convNew)) {
-          browser()
             t.ind <- which(Type == t.type)
             if (t.type == "numeric") {
                 convNew[t.co2] <- sum((ximp[, t.ind] - ximp.old[, t.ind])^2)/sum(ximp[, t.ind]^2)
