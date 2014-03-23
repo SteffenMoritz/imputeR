@@ -10,7 +10,7 @@ spect <- read.csv("./data/spect.csv")
 data <- spect
 Detect(data)
 # introduce 10% missing values, 100 simulations
-n.sim = 100
+n.sim = 21
 p = 0.1
 # Use mean imputation
 c_base <- SimEval(data, n.sim = n.sim, guess = TRUE, guess.type = "majority")
@@ -18,12 +18,12 @@ c_base
 # all lmFuns
 
 cfuns <- c("stepBackC", "stepForC", "stepBothC", "lassoC", "rpartC", "rdaC",
-            "randomForest", "gbmC", "ridgeC")
-
+            "randomForest", "ridgeC", "gbmC")
+csim_3_stepBackC <- SimEval(data, p = p, n.sim = n.sim, method = "stepBackC", seed = 1250)
 system.time(
-  foreach (i = seq_along(cfuns)) %dopar% 
-    (assign(paste("csim", cfuns[i], sep = "_"),  SimEval(data, p = p, n.sim = n.sim, method = cfuns[i], verbose = FALSE))
-     )
+  for (i in seq_along(cfuns)) {
+    assign(paste("csim_3", cfuns[i], sep = "_"),  SimEval(data, p = p, n.sim = n.sim, method = cfuns[i], verbose = FALSE))
+  }
 )
 
 # derive all the errors

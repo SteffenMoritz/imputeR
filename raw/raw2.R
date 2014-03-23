@@ -1,11 +1,4 @@
-## Try on a classification problem
-
-
-source("./code/methods.R")
-source("./code/methods2.R")
-source("./code/funs.R")
-source("./code/impute.R")
-# library(cutoff)
+library(impute)
 require(mvtsplot)
 # Parkinson Data ----------------------------------------------------------
 spect <- read.csv("./data/spect.csv")
