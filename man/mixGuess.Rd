@@ -1,0 +1,22 @@
+\name{mixGuess}
+\alias{mixGuess}
+\title{Naive imputation for mixed type data}
+\usage{
+mixGuess(missdata, method = c("mean", "majority"))
+}
+\arguments{
+  \item{missdata}{a data matrix with missing values}
+
+  \item{method}{a character vector of length 2 indicating
+  which two methods to use respectively for continuous
+  variables and categorical variables. There are three
+  options for continous variables: "mean", "median" and
+  "random", and two options for categorical varaibles:
+  "majority" and "random". The default method is "mean" for
+  the continous part and "majority" for the categorical
+  part.}
+}
+\description{
+Naive imputation for mixed type data
+}
+

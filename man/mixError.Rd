@@ -1,0 +1,20 @@
+\name{mixError}
+\alias{mixError}
+\title{Calculate mixed error when the imputed matrix is mixed type}
+\usage{
+mixError(imp, mis, true, norm = TRUE)
+}
+\arguments{
+  \item{imp}{the imputed matrix}
+
+  \item{mis}{the original matrix with missing values}
+
+  \item{true}{the true matrix}
+
+  \item{norm}{logical, if TRUE, the nomailised RMSE will
+  return for continous variables}
+}
+\description{
+Calculate mixed error when the imputed matrix is mixed type
+}
+
