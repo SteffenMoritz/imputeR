@@ -305,7 +305,7 @@ guess <- function(x, type = "mean") {
 major <- function(x) {
   max.level <- max(table(as.factor(x)))
   ## if there are several classes which are major, sample one at random
-  class.assign <- sample(names(which(max.level == summary(as.factor(x)))), 1)
+  class.assign <- sample(names(which(max.level == summary(na.omit(as.factor(x))))), 1)
   x[is.na(x)] <- class.assign
   return(x)
 }
