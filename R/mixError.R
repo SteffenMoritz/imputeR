@@ -8,7 +8,11 @@
 mixError <- function(imp, mis, true, norm = TRUE) {
   Type <- Detect(imp)
   err <- rep(NA, 2)
-  names(err) <- c('RMSE', 'MCE')
+  if (norm) {
+    names(err) <- c('NRMSE', 'MCE')
+  } else {
+    names(err) <- c('RMSE', 'MCE')
+  }
   for (t.type in Type) {
     t.ind <- which(Type == t.type)
     if (t.type == "numeric"){

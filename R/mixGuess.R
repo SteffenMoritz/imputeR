@@ -8,15 +8,11 @@
 #'and "majority" for the categorical part.
 #' @export
 mixGuess <- function(missdata, method = c("mean", "majority")) {
-  Type <- Detect(imp)
+  Type <- Detect(missdata)
   ind1 <- which(Type == "numeric")
   ind2 <- which(Type == "character")
-  
-    if (t.type == "numeric"){
-      missdata[, t.type] <- Rmse(imp[,t.ind], mis[,t.ind], true[,t.ind], norm = norm)
-    } else {
-      err[2] <- mr(imp[,t.ind], mis[,t.ind], true[,t.ind])
-    }
-  }
-  return(err)
+  newdata <- missdata
+  newdata[, ind1] <- guess(newdata[, ind1], type = method[1])
+  newdata[, ind2] <- guess(newdata[, ind2], type = method[2])
+  return(newdata)
 }
