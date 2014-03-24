@@ -140,7 +140,7 @@ otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
 #'   some other imputation method can be passed to the 'other' argument
 #' @param guess logical value, if is TRUE, then \code{\link{guess}} will be used
 #'   as the imputation method for simulation
-#' @param guess.type, guess type for the guess function. It cannot be NULL if guess is TRUE
+#' @param guess.method, guess type for the guess function. It cannot be NULL if guess is TRUE
 #' @param other some other imputation method that is based on variable selection
 #'   can be used. The requirement for this 'other' method is strict: it receives
 #'   a data matrix including missing values and returns a complete data matrix.
@@ -156,7 +156,7 @@ otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
 #'   simulationg data matrix. 
 #' @export
 SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean", 
-                    method = NULL, guess = FALSE, guess.type = NULL, 
+                    method = NULL, guess = FALSE, guess.method = NULL, 
                     other = NULL, verbose = TRUE, seed = 1234) {
   if (!guess & is.null(method) & is.null(other)) {
     stop("Please provide a method to impute or you can guess by setting 'guess = TRUE'")
@@ -166,33 +166,57 @@ SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
   }
   Type <- Detect(data)
   if (is.null(task)) {
-    if(all(Type == "numeric")) {
+    if (all(Type == "numeric")) {
       task <- 1
+      if (is.null(guess.method)) {
+        guess.method = "mean"
+      }
       Fun1 <- method
       names(task) <- "Regression"
-    } else if(all(Type == "character")) {
+    } else if (all(Type == "character")) {
       task <- 2
+      if (is.null(guess.method)) {
+        guess.method = "majority"
+      }
       Fun2 <- method
-      names(task) <- 'Classification'
+      names(task) <- "Classification"
     } else {
       task <- 3
-      if (length(method) != 2) stop ("data is mix type, please provide two functions")
+      if(is.null(guess.method)) {
+        guess.method = c("mean", "majority")
+      }
       Fun1 <- method[1]
       Fun2 <- method[2]
       names(task) <- "Regression and Classification mixed"
     }
   } else {
     if (task == 1) {
+      if (is.null(guess.method)) {
+        guess.method = "mean"
+      }
+      names(task) <- "Regression"
       Fun1 <- method
     } else if (task == 2) {
       Fun2 <- method
+      if (is.null(guess.method)) {
+        guess.method = "majority"
+      }
+      names(task) <- "Classification"
     } else {
+      if (is.null(guess.method)) {
+        guess.method = c("mean", "majority")
+      }
       Fun1 <- method[1]
       Fun2 <- method[2]
+      names(task) <- "Regression and Classification mixed"
     }
   }
   time <- numeric(n.sim)
-  error <- numeric(n.sim)
+  if (task == 3) {
+    error <- matrix(NA, nrow = n.sim, ncol = 2)
+  } else {
+    error <- numeric(n.sim)
+  }
   if (!guess & is.null(other)) {
     conv <- vector("list", n.sim)
   }
@@ -212,17 +236,26 @@ SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
                                              verbose = verbose))[3] 
         error[i] <- mr(imp$imp, simdata, data)
         conv[[i]] <- length(imp$conv)
+      } else {
+        time[i] <- system.time(imp <- impute(simdata, lmFun = Fun1, cFun = Fun2, 
+                                             verbose = verbose))[3] 
+        error[i, ] <- mixError(imp$imp, simdata, data)
+        conv[[i]] <- length(imp$conv)
       }
     } else if (!is.null(other)) {
       time[i] <- system.time(imp <- otherFun(simdata))[3]
       error[i] <- Rmse(imp, simdata, data, norm = TRUE)
     } else {
-      stopifnot(!is.null(guess.type))
-      time[i] <- system.time(imp <- guess(simdata, type = guess.type))[3]
+      stopifnot(!is.null(guess.method))
       if (task == 1) {
+        time[i] <- system.time(imp <- guess(simdata, type = guess.method))[3]
         error[i] <- Rmse(imp, simdata, data, norm = TRUE)
       } else if (task == 2) {
+        time[i] <- system.time(imp <- guess(simdata, type = guess.method))[3]
         error[i] <- mr(imp, simdata, data)
+      } else {
+        time[i] <- system.time(try1 <- mixGuess(simdata, method = guess.method))[3]
+        error[i, ] <- mixError(try1, simdata, data)
       }
     }
     close(pb)
