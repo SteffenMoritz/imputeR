@@ -5,20 +5,24 @@ require(MASS)
 tic <- read.delim("./data/ticdata2000.txt", header=FALSE)
 data <- tic
 Detect(data)
-set.seed(1234)
 data <- cbind(data[, Detect(data) == "character"], scale(data[, which(Detect(data) == "numeric")]))
-simdata <- SimIm(data[, ], 0.1)
-sum(is.na(simdata))
+set.seed(1234)
+simdata <- SimIm(data, 0.1)
+simdata3 <- SimIm(data, 0.3)
 
+
+sum(is.na(simdata))
+sum(is.na(simdata3))
 Detect(data)
-simdata <- SimIm(data, 0.3)
+set.seed(1234)
+simdata <- SimIm(data, 0.1)
 # delete the first and 18th column, they are not numeric predictors
 lmfuns <- c("stepBackR", "stepForR", "stepBothR", "lassoR", "pcrR", "plsR",
             "randomForest", "earth", "glmboost", "ridgeR")
 cfuns <- c("stepBackC", "stepForC", "stepBothC", "lassoC", "rpartC", "rdaC",
            "randomForest", "ridgeC", "gbmC")
-
-try <- impute(simdata, lmFun = lmfuns[1], cFun = cfuns[1])
+ 
+try <- impute(simdata, lmFun = lmfuns[8], cFun = cfuns[5])
 
 
 
@@ -32,5 +36,11 @@ for(i in seq_along(lmfuns)) {
 try <- impute(simdata, lmFun = lmfuns[8], cFun = cfuns[5])
 mixError(try$imp, simdata, data)
 base0 <- mixGuess(simdata)
-
 mixError(base0, simdata, data)
+
+#
+p = 0.1
+n.sim = 100
+base3 <- SimEval(data, n.sim = n.sim, p = p, guess = TRUE)
+try3 <- SimEval(data, n.sim = n.sim, p = p, method = c(lmfuns[8], cfuns[5]))
+
