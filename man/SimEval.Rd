@@ -3,7 +3,7 @@
 \title{Evaluate the performance of a imputation method by simulation}
 \usage{
 SimEval(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
-  method = NULL, guess = FALSE, guess.type = NULL, other = NULL,
+  method = NULL, guess = FALSE, guess.method = NULL, other = NULL,
   verbose = TRUE, seed = 1234)
 }
 \arguments{
@@ -33,8 +33,8 @@ SimEval(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
   \code{\link{guess}} will be used as the imputation method
   for simulation}
 
-  \item{guess.type,}{guess type for the guess function. It
-  cannot be NULL if guess is TRUE}
+  \item{guess.method,}{guess type for the guess function.
+  It cannot be NULL if guess is TRUE}
 
   \item{other}{some other imputation method that is based
   on variable selection can be used. The requirement for

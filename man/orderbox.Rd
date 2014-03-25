@@ -1,0 +1,34 @@
+\name{orderbox}
+\alias{orderbox}
+\title{Ordered boxplot for a data matrix}
+\usage{
+orderbox(x, names = c("method", "MCE"), order.by = mean,
+  decreasing = TRUE, notch = TRUE, col = "bisque", mar = c(7, 4.1, 4.1,
+  2), ...)
+}
+\arguments{
+  \item{x}{a matrix}
+
+  \item{names}{a length two character vector, default is
+  c("method, "MCE")}
+
+  \item{order.by}{which statistics to order by, default is
+  mean}
+
+  \item{decreasing}{default is TRUE, the boxplot will be
+  arranged in a decreasing order}
+
+  \item{notch}{logical, default is TRUE}
+
+  \item{col}{color for the boxplots, default is "bisque".}
+
+  \item{mar}{the margin for the plot, adjust it to your
+  need.}
+
+  \item{...}{some other arguments that can be passed to the
+  boxplot function}
+}
+\description{
+Ordered boxplot for a data matrix
+}
+
