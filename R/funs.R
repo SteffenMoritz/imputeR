@@ -342,3 +342,27 @@ major <- function(x) {
   x[is.na(x)] <- class.assign
   return(x)
 }
+
+#' Ordered boxplot for a data matrix
+#' 
+#' @param x a matrix
+#' @param names a length two character vector, default is c("method, "MCE")
+#' @param order.by which statistics to order by, default is mean
+#' @param decreasing default is TRUE, the boxplot will be arranged in a decreasing order
+#' @param notch logical, default is TRUE
+#' @param col color for the boxplots, default is "bisque". 
+#' @param mar the margin for the plot, adjust it to your need.
+#' @param ... some other arguments that can be passed to the boxplot function
+#' @export
+orderbox <- function(x, names = c("method", "MCE"), order.by = mean, 
+                     decreasing = TRUE, notch = TRUE, col = "bisque", 
+                     mar = c(7, 4.1, 4.1, 2), ...) {
+  x2 <- melt(x)[, 2:3]
+  names(x2) <- names
+  oind <- order(as.numeric(by(x2[, 2], x2[, 1], order.by)), decreasing = decreasing)
+  x2[, names[1]]<- ordered(x2[, names[1]] , levels = levels(x2[, names[1]])[oind])  
+  par(las = 2)
+  par(mar = mar)
+  boxplot(as.formula(paste(names[2], "~", names[1])), data = x2, notch = notch, 
+          col = col, ylab = names[2], ...)
+}
