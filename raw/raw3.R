@@ -33,14 +33,20 @@ for(i in seq_along(lmfuns)) {
     try <- impute(simdata, lmFun = lmfuns[i], cFun = cfuns[j])
   }
 }
-try <- impute(simdata, lmFun = lmfuns[8], cFun = cfuns[5])
+system.time(try <- impute(simdata, lmFun = lmfuns[8], cFun = cfuns[5]))
 mixError(try$imp, simdata, data)
 base0 <- mixGuess(simdata)
 mixError(base0, simdata, data)
 
 #
-p = 0.1
+p = 0.3
 n.sim = 100
 base3 <- SimEval(data, n.sim = n.sim, p = p, guess = TRUE)
 try3 <- SimEval(data, n.sim = n.sim, p = p, method = c(lmfuns[8], cfuns[5]))
+colMeans(try3$error)
+colMeans(base3$error)
 
+apply(try3$error, 2, sd)
+apply(base3$error, 2, sd)
+wilcox.test(base3$error[, 1], try3$error[, 1])
+wilcox.test(base3$error[, 2], try3$error[, 2])
