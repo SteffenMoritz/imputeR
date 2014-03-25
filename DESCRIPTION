@@ -20,7 +20,8 @@ Depends:
     rpart,
     tree,
     lars,
-    earth
+    earth,
+    reshape2
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
 Description: The function 'impute' in this package is the main function that
     uses variable selection to impute missing values. Many different
