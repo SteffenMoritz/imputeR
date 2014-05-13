@@ -46,6 +46,14 @@ mean anything. But if 1234 is used, then the seed for simulating the first
 missing data matrix is 1234, then it sums by one for every subsequent
 simulationg data matrix.}
 }
+\value{
+a list of componentes including
+ \item{call}{the method used for imputation}
+ \item{task}{the name of the task}
+ \item{time}{computational time}
+ \item{error}{the imputation error}
+ \item{conv}{the number of iterations to converge}
+}
 \description{
 Evaluate the performance of a imputation method by simulation
 }

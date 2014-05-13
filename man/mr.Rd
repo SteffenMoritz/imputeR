@@ -12,6 +12,9 @@ mr(imp, mis, true)
 
 \item{true}{the ture data matrix}
 }
+\value{
+The missclassification error
+}
 \description{
 This function calculates the misclassfication error given the imputed data,
 the missing data and the true data.

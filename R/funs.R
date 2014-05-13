@@ -1,18 +1,19 @@
 #' Introduce some missing values into a data matrix
 #' 
-#' This function randomly introduce some amount of missing values into a matrix
+#' This function randomly introduce some amount of missing values into a matrix.
 #' 
 #' @param data a data matrix to simulate
 #' @param p the percentage of missing values introduced into the data matrix
 #'    it should be a value between 0 and 1.
 #' @keywords simulation, imputation
+#' @return the same size matrix with simulated missing values.
+#' 
 #' @export
 #' @examples
 #' simdata <- matrix(rnorm(100), 10, 10)
 #' missingdata <- SimIm(simdata, p = 0.15)
 #' # count the number of missing values afterwards
 #' sum(is.na(missingdata))
-
 SimIm <- function(data, p = 0.1) {
   vec <- c(unlist(data))
   missing <- rbinom(length(vec), 1, p)
@@ -30,6 +31,7 @@ SimIm <- function(data, p = 0.1) {
 #' @param mis the missing data matrix
 #' @param true the true data matrix
 #' @param norm logical, if TRUE then the normalized RMSE will be returned
+#' @return the RMSE or NRMSE
 #' 
 #' @export
 Rmse <- function(imp, mis, true, norm = FALSE) {
@@ -57,16 +59,14 @@ Rmse <- function(imp, mis, true, norm = FALSE) {
 #' @param imp the imputaed data matrix
 #' @param mis the missing data matrix
 #' @param true the ture data matrix
+#' @return The missclassification error
+#' 
 #' @export 
 mr <- function(imp, mis, true) {
-  
-  # if norm is true, calculate the normalised RMSE
-  # coerce both matrices into vectors
   
   imp <- as.matrix(imp)
   mis <- as.matrix(mis)
   true <- as.matrix(true)
-  
   missIndex <- which(is.na(mis))
   errvec <- table(as.numeric(imp[missIndex]), as.matrix(true)[missIndex])
   mr <- 1 - (sum(diag(errvec))/sum(errvec))
@@ -81,6 +81,8 @@ mr <- function(imp, mis, true) {
 #' @param mis the missing data matrix
 #' @param true, the true data matrix
 #' @param ... other arguments that can be passed to plot
+#' 
+#' @return a plot object that show the imputation performance
 #' @export
 plotIm <- function(imp, mis, true, ...) {
   imp <- as.matrix(imp)
@@ -91,7 +93,6 @@ plotIm <- function(imp, mis, true, ...) {
   plot(imp[missIndex], true[missIndex], xlab = "Imputed Value", pch = 19, 
        cex = 0.8, ylab = "True Value", main = "Imputation Performance", ...)
   abline(0, 1, col = 2, lwd = 1.2, lty = 2)
-  
 }
 
 #' Impute missing data matrix by some other imputation methods
@@ -102,6 +103,7 @@ plotIm <- function(imp, mis, true, ...) {
 #' @param misdata is the missing data need to be imputed
 #' @param truedata is the true data matrix
 #' @param ... some other arguments that can be passed to method
+#' @return the RMSE for the imputation method
 #' 
 #' @export
 otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
@@ -149,11 +151,17 @@ otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
 #'   the convegence difference as compared to the precious iteration. The 
 #'   progression bar will show up irrespective of this option and it can not be
 #'   got rid of. 
-#'   @param seed set the seed for simulation so simulations using different imputation
+#' @param seed set the seed for simulation so simulations using different imputation
 #'   methods are comparable. The default value is set to 1234, which is not supposed to 
 #'   mean anything. But if 1234 is used, then the seed for simulating the first
 #'   missing data matrix is 1234, then it sums by one for every subsequent
 #'   simulationg data matrix. 
+#' @return a list of componentes including
+#'  \item{call}{the method used for imputation}  
+#'  \item{task}{the name of the task}
+#'  \item{time}{computational time}
+#'  \item{error}{the imputation error}
+#'  \item{conv}{the number of iterations to converge}
 #' @export
 SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean", 
                     method = NULL, guess = FALSE, guess.method = NULL, 
@@ -334,7 +342,15 @@ guess <- function(x, type = "mean") {
 #' Majority imputation for a vector
 #' 
 #' @param x a character (or numeric categorical) vector with missing values
+#' @return the same length of vector with missing values being imputed by the majority class
+#' in this vector.
 #' @export
+#' @examples
+#' a <- c(rep(0, 10), rep(1, 15), rep(2, 5))
+#' a[sample(seq_along(a), 5)] <- NA
+#' a
+#' b <- majority(a)
+#' b
 major <- function(x) {
   max.level <- max(table(as.factor(x)))
   ## if there are several classes which are major, sample one at random
@@ -353,7 +369,10 @@ major <- function(x) {
 #' @param col color for the boxplots, default is "bisque". 
 #' @param mar the margin for the plot, adjust it to your need.
 #' @param ... some other arguments that can be passed to the boxplot function
+#' @return a boxplot
 #' @export
+#' @examples
+#' a <- matrix(sample(rnorm(1000)), nrow = 100, ncol = 10)
 orderbox <- function(x, names = c("method", "MCE"), order.by = mean, 
                      decreasing = TRUE, notch = TRUE, col = "bisque", 
                      mar = c(7, 4.1, 4.1, 2), ...) {

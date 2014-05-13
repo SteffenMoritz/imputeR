@@ -14,6 +14,9 @@ Rmse(imp, mis, true, norm = FALSE)
 
 \item{norm}{logical, if TRUE then the normalized RMSE will be returned}
 }
+\value{
+the RMSE or NRMSE
+}
 \description{
 This function calculate imputation error given the imputed data, the missing
 data and the true data

@@ -24,7 +24,13 @@ orderbox(x, names = c("method", "MCE"), order.by = mean,
 
 \item{...}{some other arguments that can be passed to the boxplot function}
 }
+\value{
+a boxplot
+}
 \description{
 Ordered boxplot for a data matrix
+}
+\examples{
+a <- matrix(sample(rnorm(1000)), nrow = 100, ncol = 10)
 }
 

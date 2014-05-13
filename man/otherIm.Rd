@@ -14,6 +14,9 @@ otherIm(method = NULL, misdata = simdata, truedata = data, ...)
 
 \item{...}{some other arguments that can be passed to method}
 }
+\value{
+the RMSE for the imputation method
+}
 \description{
 This function uses some other imputation methods that are not introduced in
 our package.

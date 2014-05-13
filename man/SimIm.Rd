@@ -11,8 +11,11 @@ SimIm(data, p = 0.1)
 \item{p}{the percentage of missing values introduced into the data matrix
 it should be a value between 0 and 1.}
 }
+\value{
+the same size matrix with simulated missing values.
+}
 \description{
-This function randomly introduce some amount of missing values into a matrix
+This function randomly introduce some amount of missing values into a matrix.
 }
 \examples{
 simdata <- matrix(rnorm(100), 10, 10)

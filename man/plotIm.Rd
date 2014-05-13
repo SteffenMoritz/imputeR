@@ -14,6 +14,9 @@ plotIm(imp, mis, true, ...)
 
 \item{...}{other arguments that can be passed to plot}
 }
+\value{
+a plot object that show the imputation performance
+}
 \description{
 this is a plot function for assessing imputation performance given the imputed data
 and the original true data

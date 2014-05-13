@@ -1,18 +1,31 @@
 Package: impute
 Type: Package
-Title: Impute missing values by automated variable selection
-Verision: 1.0
-Author: Lingbing Feng
+Title: A General Imputation Framework
+Version: 1.0
+Date: 2013-05-15
+Author: Lingbing Feng, Gen Nowak, Alan. H. Welsh, Terry. J. O'Neill
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
-Description: The function 'impute' in this package is the main function that
-    uses variable selection to impute missing values. Many different variable 
-    selection methods have been incorporated in this package and they are listed
-    in the mannual.
-Depends: R (>= 3.1.0)
-Imports: missForest, ggplot2, reshape2
-Suggests: cutoff
+Description: This package provides a set of tools for imputation based on
+    variable selection.
+Repository: CRAN
+Depends:
+    R (>= 3.1.0)
+Imports:
+    ggplot2,
+    reshape2,
+    sda,
+    rda,
+    Cubist,
+    RRF,
+    earth,
+    ridge,
+    gbm,
+    mboost,
+    glmnet,
+    SpatioTemporal,
+    rpart,
+    tree,
+    cutoff
+NeedsCompilation: no
 Roxygen: list(wrap = FALSE)
 License: GPL-2
-LazyLoad: yes
-Repository: CRAN
-NeedsCompilation: no

@@ -8,7 +8,18 @@ major(x)
 \arguments{
 \item{x}{a character (or numeric categorical) vector with missing values}
 }
+\value{
+the same length of vector with missing values being imputed by the majority class
+in this vector.
+}
 \description{
 Majority imputation for a vector
+}
+\examples{
+a <- c(rep(0, 10), rep(1, 15), rep(2, 5))
+a[sample(seq_along(a), 5)] <- NA
+a
+b <- majority(a)
+b
 }
 
