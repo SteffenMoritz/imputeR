@@ -1,30 +1,18 @@
 Package: impute
 Type: Package
 Title: Impute missing values by automated variable selection
-Version: 1.0
-Date: 2014-03-14
+Verision: 1.0
 Author: Lingbing Feng
-Depends:
-    randomForest,
-    pls,
-    rda,
-    sda,
-    caret,
-    mboost,
-    gbm,
-    RRF,
-    ridge,
-    glmnet,
-    Cubist,
-    SpatioTemporal,
-    rpart,
-    tree,
-    lars,
-    earth,
-    reshape2
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
 Description: The function 'impute' in this package is the main function that
-    uses variable selection to impute missing values. Many different
-    variable selection methods have been incorporated in this package
-    and they are listed in the mannual.
-License: GPL (>= 2)
+    uses variable selection to impute missing values. Many different variable 
+    selection methods have been incorporated in this package and they are listed
+    in the mannual.
+Depends: R (>= 3.1.0)
+Imports: missForest, ggplot2, reshape2
+Suggests: cutoff
+Roxygen: list(wrap = FALSE)
+License: GPL-2
+LazyLoad: yes
+Repository: CRAN
+NeedsCompilation: no
