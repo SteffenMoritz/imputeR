@@ -7,7 +7,6 @@
 #' In the study of simulation, this dataset can be treated as continuous-only data
 #' 
 #' \itemize{
-#'   \item name. ASCII subject name and recording number 
 #'   \item MDVP:Fo(Hz). Average vocal fundamental frequency  
 #'   \item MDVP:Fhi(Hz). Maximum vocal fundamental frequency 
 #'   \item MDVP:Flo(Hz). Minimum vocal fundamental frequency 
@@ -20,7 +19,7 @@
 #' \emph{BioMedical Engineering OnLine}
 #' @docType data
 #' @keywords datasets
-#' @format A data frame with 195 rows and 24 variables
+#' @format A data frame with 195 rows and 22 variables
 #' @name parkinson
 NULL
 

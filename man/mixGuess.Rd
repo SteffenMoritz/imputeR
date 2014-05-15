@@ -14,7 +14,21 @@ for continous variables: "mean", "median" and "random", and two options for cate
 varaibles: "majority" and "random". The default method is "mean" for the continous part
 and "majority" for the categorical part.}
 }
+\value{
+the same size data matrix with no missing value.
+}
 \description{
 Naive imputation for mixed type data
+}
+\examples{
+data(tic)
+\dontrun{
+missdata <- SimIm(tic, 0.1)
+require(cutoffR)
+nmissing(missdata)
+HeatStruct(missdata)
+impdata <- mixGuess(missdata)
+nmissing(impdata)
+}
 }
 

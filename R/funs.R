@@ -14,6 +14,14 @@
 #' missingdata <- SimIm(simdata, p = 0.15)
 #' # count the number of missing values afterwards
 #' sum(is.na(missingdata))
+#' data(parkinson)
+#' # There is no missing values in the original parkinson data
+#' \dontrun{
+#' HeatStruct(parkinson)
+#' }
+#' # Let's introduce some missing values into the dataset
+#' # say, 10% of random missing values
+#' missdata <- SimIm(parkinson, 0.1)
 SimIm <- function(data, p = 0.1) {
   vec <- c(unlist(data))
   missing <- rbinom(length(vec), 1, p)
@@ -32,12 +40,23 @@ SimIm <- function(data, p = 0.1) {
 #' @param true the true data matrix
 #' @param norm logical, if TRUE then the normalized RMSE will be returned
 #' @return the RMSE or NRMSE
+#' @seealso \code{\link{impute}} for the main imputation function, 
+#' \code{\link{mr}} for the misclassification error metric.
 #' 
 #' @export
+#' @examples
+#' data(parkinson)
+#' # introduce 10% random missing values into the parkinson data
+#' missdata <- SimIm(parkinson, 0.1)
+#' # visualise the missing pattern
+#' # HeatStruct(missdata, xlab = "variables", ylab = "values")
+#' # impute the missing values by LASSO
+#' \dontrun{
+#' impdata <- impute(missdata, lmFun = "lassoR")
+#' # calculate the normalised RMSE for the imputation
+#' Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
+#' }
 Rmse <- function(imp, mis, true, norm = FALSE) {
-  # if norm is true, calculate the normalised RMSE
-  # coerce both matrices into vectors
-  
   imp <- as.matrix(imp)
   mis <- as.matrix(mis)
   true <- as.matrix(true)
@@ -45,6 +64,7 @@ Rmse <- function(imp, mis, true, norm = FALSE) {
   missIndex <- which(is.na(mis))
   errvec <- imp[missIndex] - true[missIndex]
   rmse <- sqrt(mean(errvec^2))
+  
   if (norm) {
     rmse <- rmse/sd(true[missIndex])
   }
@@ -62,11 +82,25 @@ Rmse <- function(imp, mis, true, norm = FALSE) {
 #' @return The missclassification error
 #' 
 #' @export 
+#' @examples
+#' data(spect)
+#' Detect(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' require(cutoffR)
+#' HeatStruct(missdata)
+#' nmissing(missdata)
+#' # impute using rpart
+#' impdata <- impute(missdata, cFun = "rpartC")
+#' # calculate the misclassification error
+#' mr(impdata$imp, missdata, spect)
+#' }
 mr <- function(imp, mis, true) {
   
   imp <- as.matrix(imp)
   mis <- as.matrix(mis)
   true <- as.matrix(true)
+  
   missIndex <- which(is.na(mis))
   errvec <- table(as.numeric(imp[missIndex]), as.matrix(true)[missIndex])
   mr <- 1 - (sum(diag(errvec))/sum(errvec))
@@ -84,6 +118,19 @@ mr <- function(imp, mis, true) {
 #' 
 #' @return a plot object that show the imputation performance
 #' @export
+#' @examples
+#' data(parkinson)
+#' # introduce 10% random missing values into the parkinson data
+#' missdata <- SimIm(parkinson, 0.1)
+#' # visualise the missing pattern
+#' # HeatStruct(missdata, xlab = "variables", ylab = "values")
+#' # impute the missing values by LASSO
+#' \dontrun{
+#' impdata <- impute(missdata, lmFun = "lassoR")
+#' # calculate the normalised RMSE for the imputation
+#' Rmse(impdata$imp, missdata, parkinson, norm = T)
+#' plotIm(impdata$imp, missdata, parkinson)
+#' }
 plotIm <- function(imp, mis, true, ...) {
   imp <- as.matrix(imp)
   mis <- as.matrix(mis)
@@ -95,39 +142,8 @@ plotIm <- function(imp, mis, true, ...) {
   abline(0, 1, col = 2, lwd = 1.2, lty = 2)
 }
 
-#' Impute missing data matrix by some other imputation methods
-#' 
-#' This function uses some other imputation methods that are not introduced in
-#' our package. 
-#' @param method is the imputation method, possibly from other packages
-#' @param misdata is the missing data need to be imputed
-#' @param truedata is the true data matrix
-#' @param ... some other arguments that can be passed to method
-#' @return the RMSE for the imputation method
-#' 
-#' @export
-otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
-  
-  FUN <- match.fun(method)
-  if (identical(FUN, SVDmiss)) {
-    impdata<- FUN(misdata, ...)$Xfill
-  }
-  else {
-    impdata<- FUN(misdata, ...)$x
-  }
-  rmse <- Rmse(impdata, misdata, truedata, norm = TRUE)
-  plotIm(impdata, misdata, data)
-  return(rmse)
-}
 
-# 
-# ma = function(i) {
-#   i[is.na(i)] <- mean(i, na.rm = TRUE)
-#   return(i)
-# }
-
-
-#' Evaluate the performance of a imputation method by simulation
+#' Evaluate imputation performance by simulation
 #' 
 #' @param data is the complete data matrix that will be used for simulation
 #' @param task task type, either be 1 for regression, 2 for classification or 3 for
@@ -162,7 +178,14 @@ otherIm <- function(method = NULL, misdata = simdata, truedata = data, ...) {
 #'  \item{time}{computational time}
 #'  \item{error}{the imputation error}
 #'  \item{conv}{the number of iterations to converge}
+#'  
 #' @export
+#' @examples
+#' data(parkinson)
+#' # WARNING: simulation may take considerable time.
+#' \dontrun{
+#' SimEval(parkinson, method = "lassoR")
+#' }
 SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean", 
                     method = NULL, guess = FALSE, guess.method = NULL, 
                     other = NULL, verbose = TRUE, seed = 1234) {
@@ -284,7 +307,17 @@ SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean",
 #' @param x is the data matrix that need to be detected. 
 #' @param n is a number, indicating how many levels, if outnumbered, can be seen
 #' as an numeric variable, rather than a categorical variable. 
+#' @return the variable type for every column, can either be "numeric" or
+#' "character". 
+#' 
 #' @export
+#' @examples
+#' data(parkinson)
+#' Detect(parkinson)
+#' data(spect)
+#' Detect(spect)
+#' data(tic)
+#' table(Detect(tic))
 Detect <- function(x, n = 5) {
   if (!is.matrix(x) & !is.data.frame(x)) {
     stop("x has to be either a matrix or data frame")
@@ -308,7 +341,7 @@ Detect <- function(x, n = 5) {
 } 
 
 
-#' Impute by guessing
+#' Impute by (educated) guessing
 #' 
 #' This function use some primitive methods, including mean imputation, 
 #' median imputation, random guess, or majority imputation (only for categorical
@@ -317,10 +350,20 @@ Detect <- function(x, n = 5) {
 #' @param type is the guessing type, including "mean" for mean imputation, 
 #' "median" for median imputation, "random" for random guess, and "majority" for
 #' majority imputation for categorical variables. 
+#' 
 #' @export
+#' @examples
+#' data(parkinson)
+#' # introduce some random missing values
+#' missdata <- SimIm(parkinson, 0.1)
+#' # impute by mean imputation
+#' impdata <- guess(missdata)
+#' # caculate the NRMSE
+#' Rmse(impdata, missdata, parkinson, norm = TRUE)
+#' # by random guessing, the NRMSE should be much bigger
+#' impdata2 <- guess(missdata, "random")
+#' Rmse(impdata2, missdata, parkinson, norm = TRUE)
 guess <- function(x, type = "mean") {
-  # this function impute a missing data matrix by some guess
-  # type can be "mean", "median", "random", or "majority" (only for discrete
   switch(type,
          mean = sapply(as.data.frame(x), FUN = function(i) {
            i[is.na(i)] <- mean(i, na.rm = TRUE)
@@ -341,15 +384,19 @@ guess <- function(x, type = "mean") {
 
 #' Majority imputation for a vector
 #' 
+#' @description This function is internally used by \code{\link{guess}}, it 
+#' may be useless in reality.
+#' 
 #' @param x a character (or numeric categorical) vector with missing values
 #' @return the same length of vector with missing values being imputed by the majority class
 #' in this vector.
+#' 
 #' @export
 #' @examples
 #' a <- c(rep(0, 10), rep(1, 15), rep(2, 5))
 #' a[sample(seq_along(a), 5)] <- NA
 #' a
-#' b <- majority(a)
+#' b <- major(a)
 #' b
 major <- function(x) {
   max.level <- max(table(as.factor(x)))
@@ -369,14 +416,18 @@ major <- function(x) {
 #' @param col color for the boxplots, default is "bisque". 
 #' @param mar the margin for the plot, adjust it to your need.
 #' @param ... some other arguments that can be passed to the boxplot function
-#' @return a boxplot
+#' @return a boxplot 
+#' @importFrom reshape2 melt
 #' @export
 #' @examples
-#' a <- matrix(sample(rnorm(1000)), nrow = 100, ncol = 10)
+#' data(parkinson)
+#' \dontrun{
+#' orderbox(parkinson)
+#' }
 orderbox <- function(x, names = c("method", "MCE"), order.by = mean, 
                      decreasing = TRUE, notch = TRUE, col = "bisque", 
                      mar = c(7, 4.1, 4.1, 2), ...) {
-  x2 <- melt(x)[, 2:3]
+  x2 <- suppressMessages(melt(x))
   names(x2) <- names
   oind <- order(as.numeric(by(x2[, 2], x2[, 1], order.by)), decreasing = decreasing)
   x2[, names[1]]<- ordered(x2[, names[1]] , levels = levels(x2[, names[1]])[oind])  

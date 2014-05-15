@@ -1,6 +1,6 @@
-#' General Imputation Framework
+#' General Imputation Framework in R
 #' 
-#' @description Impute missing values under the general framework.
+#' @description Impute missing values under the general framework in R
 #' @details This function can impute several kinds of data, including continuous-only
 #' data, categorical-only data and mixed-type data. Many methods can be used, including
 #' regularisation method like LASSO and ridge regression, tree-based model and dimensionality
@@ -34,14 +34,14 @@
 #' @export
 #' @examples
 #' data(parkinson)
-#' require(cutoffR)
 #' # introduce 10% random missing values into the parkinson data
 #' missdata <- SimIm(parkinson, 0.1)
-#' # count the number of missing values
-#' nmissing(missdata)
-#' # visualise the missing pattern
-#' # HeatStruct(misstdata, xlab = "variables", ylab = "values")
 #' # impute the missing values by LASSO
+#' \dontrun{
+#' impdata <- impute(missdata, lmFun = "lassoR")
+#' # calculate the normalised RMSE for the imputation
+#' Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
+#' }
 impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL, 
                    maxiter = 100, verbose = TRUE, conv = TRUE) {
   Type <- Detect(missdata)

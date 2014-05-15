@@ -21,4 +21,18 @@ a plot object that show the imputation performance
 this is a plot function for assessing imputation performance given the imputed data
 and the original true data
 }
+\examples{
+data(parkinson)
+# introduce 10\% random missing values into the parkinson data
+missdata <- SimIm(parkinson, 0.1)
+# visualise the missing pattern
+# HeatStruct(missdata, xlab = "variables", ylab = "values")
+# impute the missing values by LASSO
+\dontrun{
+impdata <- impute(missdata, lmFun = "lassoR")
+# calculate the normalised RMSE for the imputation
+Rmse(impdata$imp, missdata, parkinson, norm = T)
+plotIm(impdata$imp, missdata, parkinson)
+}
+}
 

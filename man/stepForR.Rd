@@ -10,7 +10,17 @@ stepForR(x, y)
 
 \item{y}{response vector}
 }
+\value{
+a model object that can be used by the \code{\link{impute}} function
+}
 \description{
 Best subset variable selection (forward direction) for continuous data
+}
+\examples{
+data(parkinson)
+missdata <- SimIm(parkinson, 0.1)
+\dontrun{
+impdata <- impute(missdata, lmFun = "stepForR")
+}
 }
 

@@ -3,7 +3,7 @@
 \name{parkinson}
 \alias{parkinson}
 \title{Parkinsons Data Set}
-\format{A data frame with 195 rows and 24 variables}
+\format{A data frame with 195 rows and 22 variables}
 \source{
 \url{http://archive.ics.uci.edu/ml/datasets/Parkinsons}
 }
@@ -16,7 +16,6 @@ In the study of simulation, this dataset can be treated as continuous-only data
 }
 \details{
 \itemize{
-  \item name. ASCII subject name and recording number
   \item MDVP:Fo(Hz). Average vocal fundamental frequency
   \item MDVP:Fhi(Hz). Maximum vocal fundamental frequency
   \item MDVP:Flo(Hz). Minimum vocal fundamental frequency

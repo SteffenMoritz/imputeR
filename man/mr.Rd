@@ -19,4 +19,18 @@ The missclassification error
 This function calculates the misclassfication error given the imputed data,
 the missing data and the true data.
 }
+\examples{
+data(spect)
+Detect(spect)
+missdata <- SimIm(spect, 0.1)
+\dontrun{
+require(cutoffR)
+HeatStruct(missdata)
+nmissing(missdata)
+# impute using rpart
+impdata <- impute(missdata, cFun = "rpartC")
+# calculate the misclassification error
+mr(impdata$imp, missdata, spect)
+}
+}
 

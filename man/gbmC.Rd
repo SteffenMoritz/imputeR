@@ -10,7 +10,21 @@ gbmC(x, y)
 
 \item{y}{response vector}
 }
+\value{
+a model object that can be used by the \code{\link{impute}} function
+and the best.iter for gbm model.
+}
 \description{
 boosting tree for imputation
+}
+\examples{
+data(spect)
+missdata <- SimIm(spect, 0.1)
+\dontrun{
+impdata <- impute(spect, cFun = "gbmC")
+}
+}
+\seealso{
+\code{\link{gbm}}
 }
 

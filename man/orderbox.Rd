@@ -31,6 +31,9 @@ a boxplot
 Ordered boxplot for a data matrix
 }
 \examples{
-a <- matrix(sample(rnorm(1000)), nrow = 100, ncol = 10)
+data(parkinson)
+\dontrun{
+orderbox(parkinson)
+}
 }
 

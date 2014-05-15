@@ -10,7 +10,20 @@ lassoC(x, y)
 
 \item{y}{response vector}
 }
+\value{
+a model object that can be used by the \code{\link{impute}} function
+}
 \description{
 logistic regression with lasso for imputation
+}
+\examples{
+data(spect)
+missdata <- SimIm(spect, 0.1)
+\dontrun{
+impdata <- impute(spect, cFun = "lassoC")
+}
+}
+\seealso{
+\code{\link{cv.glmnet}} and \code{\link{glmnet}}
 }
 

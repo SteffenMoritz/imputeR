@@ -4,14 +4,19 @@
 #' direction for categorical data
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @importFrom stats step
+#' @seealso \code{\link{step}}, \code{\link{stepBothR}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "stepBothC")
+#' }
 stepBothC <- function(x, y) {
-  # stepwise both for classification
-  
   impdata <- data.frame(cbind(y, x))
-  # the null model with only the intercept
   null <- glm(factor(y)~1, data = impdata, family = binomial)
-  # the full model with all variables
   full <- glm(factor(y)~., data = impdata, family = binomial)
   model <- step(null, scope = list(upper = full), data = impdata,
                 trace = 0, direction = "both")
@@ -24,14 +29,19 @@ stepBothC <- function(x, y) {
 #' direction for categorical data
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @importFrom stats step
+#' @seealso \code{\link{step}}, \code{\link{stepBackR}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "stepBackC")
+#' }
 stepBackC <- function(x, y) {
-  # step back selection for classification
-  
   impdata <- data.frame(cbind(y, x))
-  # the null model with only the intercept
   null <- glm(factor(y)~1, data = impdata, family = binomial)
-  # the full model with all variables
   full <- glm(factor(y)~., data = impdata, family = binomial)
   model <- step(full, data = impdata, trace = 0, direction = "backward")
   return(model)
@@ -44,10 +54,17 @@ stepBackC <- function(x, y) {
 #' direction for categorical data
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @importFrom stats step
+#' @seealso \code{\link{step}}, \code{\link{stepForR}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "stepForC")
+#' }
 stepForC <- function(x, y) {
-  # step forward selection for classification
-  
   impdata <- data.frame(cbind(y, x))
   # the null model with only the intercept
   null <-glm(factor(y)~1, data = impdata, family = binomial)
@@ -63,7 +80,16 @@ stepForC <- function(x, y) {
 #' classification tree for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @importFrom rpart rpart
+#' @seealso \code{\link{rpart}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "rpartC")
+#' }
 rpartC <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   model <- rpart(y~., data = impdata, method = "class")
@@ -75,7 +101,17 @@ rpartC <- function(x, y) {
 #' regularised LDA method for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @importFrom rda rda
+#' @importFrom rda rda.cv
+#' @seealso \code{\link{rda}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "rdaC")
+#' }
 rdaC <- function(x, y) {
   y <- as.numeric(y)
   x <- t(x)
@@ -92,10 +128,17 @@ rdaC <- function(x, y) {
 #' logistic regression with lasso for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @import glmnet
+#' @seealso \code{\link{cv.glmnet}} and \code{\link{glmnet}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "lassoC")
+#' }
 lassoC <- function(x, y) {
-  # LASSO for logistic regression
-  
   lamb <- cv.glmnet(x, y, family = "binomial", type.measure = "class")$lambda.min
   model <- glmnet(x, y, family = "binomial", lambda = lamb)
   return(model)
@@ -106,7 +149,16 @@ lassoC <- function(x, y) {
 #' Ridge regression with lasso for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' @importFrom ridge logisticRidge
+#' @seealso \code{\link{logisticRidge}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "ridgeC")
+#' }
 ridgeC <- function(x, y) {
   impdata <- data.frame(cbind(y, x))
   model <- logisticRidge(y~., data = impdata)
@@ -119,7 +171,18 @@ ridgeC <- function(x, y) {
 #' boosting tree for imputation
 #' @param x predictor matrix
 #' @param y response vector
+#' @return a model object that can be used by the \code{\link{impute}} function
+#' and the best.iter for gbm model.
+#' @importFrom gbm gbm
+#' @importFrom gbm gbm.perf
+#' @seealso \code{\link{gbm}}
 #' @export
+#' @examples
+#' data(spect)
+#' missdata <- SimIm(spect, 0.1)
+#' \dontrun{
+#' impdata <- impute(spect, cFun = "gbmC")
+#' }
 gbmC <- function(x, y) {
   y <- as.numeric(y)
   impdata <- data.frame(cbind(y, x))

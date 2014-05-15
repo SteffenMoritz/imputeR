@@ -22,6 +22,14 @@ simdata <- matrix(rnorm(100), 10, 10)
 missingdata <- SimIm(simdata, p = 0.15)
 # count the number of missing values afterwards
 sum(is.na(missingdata))
+data(parkinson)
+# There is no missing values in the original parkinson data
+\dontrun{
+HeatStruct(parkinson)
+}
+# Let's introduce some missing values into the dataset
+# say, 10\% of random missing values
+missdata <- SimIm(parkinson, 0.1)
 }
 \keyword{imputation}
 \keyword{simulation,}

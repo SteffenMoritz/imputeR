@@ -12,9 +12,24 @@ mixError(imp, mis, true, norm = TRUE)
 
 \item{true}{the true matrix}
 
-\item{norm}{logical, if TRUE, the nomailised RMSE will return for continous variables}
+\item{norm}{logical, if TRUE, the nomailised RMSE will return for continous
+variables}
+}
+\value{
+a vector of two values indicating the mixed error the the imputation,
+the first one if either RMSE or NRMSE, the second one is MCE.
 }
 \description{
 Calculate mixed error when the imputed matrix is mixed type
+}
+\examples{
+data(tic)
+Detect(tic)
+missdata <- SimIm(tic, 0.3)
+\dontrun{
+library(earth)
+impdata <- impute(tic, lmFun = "earth", cFun = "rpartC")
+mixError(impdata$imp, missdata, tic)
+}
 }
 

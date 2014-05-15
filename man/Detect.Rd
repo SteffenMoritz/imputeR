@@ -11,10 +11,22 @@ Detect(x, n = 5)
 \item{n}{is a number, indicating how many levels, if outnumbered, can be seen
 as an numeric variable, rather than a categorical variable.}
 }
+\value{
+the variable type for every column, can either be "numeric" or
+"character".
+}
 \description{
 This function detects the type of the variables in a data matrix. Types
 can be continuous only, categorical only or mixed type. The rule for
 defining a variable as a categorical variable is when: (1) it is a character
 vector, (2) it contains no more than n = 5 unique values
+}
+\examples{
+data(parkinson)
+Detect(parkinson)
+data(spect)
+Detect(spect)
+data(tic)
+table(Detect(tic))
 }
 

@@ -10,7 +10,21 @@ CubistR(x, y)
 
 \item{y}{response vector}
 }
+\value{
+a model object that can be used by the \code{\link{impute}} function
+and the optimal value for the "neighbors".
+}
 \description{
 Quinlan's Cubist model for imputation
+}
+\examples{
+data(parkinson)
+missdata <- SimIm(parkinson, 0.1)
+\dontrun{
+impdata <- impute(missdata, lmFun = "CubistR")
+}
+}
+\seealso{
+\code{\link{cubist}}
 }
 

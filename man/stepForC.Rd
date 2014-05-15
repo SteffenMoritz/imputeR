@@ -10,8 +10,21 @@ stepForC(x, y)
 
 \item{y}{response vector}
 }
+\value{
+a model object that can be used by the \code{\link{impute}} function
+}
 \description{
 Best subset variable selection from both forward and backward
 direction for categorical data
+}
+\examples{
+data(spect)
+missdata <- SimIm(spect, 0.1)
+\dontrun{
+impdata <- impute(spect, cFun = "stepForC")
+}
+}
+\seealso{
+\code{\link{step}}, \code{\link{stepForR}}
 }
 
