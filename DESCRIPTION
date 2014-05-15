@@ -1,31 +1,26 @@
-Package: impute
+Package: imputeR
 Type: Package
-Title: A General Imputation Framework
-Version: 1.0
-Date: 2013-05-15
+Title: A General Imputation Framework in R
+Version: 1.0.0
+Date: 2013-05-14
 Author: Lingbing Feng, Gen Nowak, Alan. H. Welsh, Terry. J. O'Neill
 Maintainer: Lingbing Feng <fenglb88@gmail.com>
-Description: This package provides a set of tools for imputation based on
-    variable selection.
+Description: This package provides a general imputation framework based on
+    variable selection methods including regularisation methods,
+    tree-based models and dimension reduction methods.
 Repository: CRAN
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.1.0),
 Imports:
-    ggplot2,
+    caret,
     reshape2,
-    sda,
+    glmnet,
+    pls,
     rda,
     Cubist,
-    RRF,
-    earth,
     ridge,
     gbm,
     mboost,
-    glmnet,
-    SpatioTemporal,
     rpart,
-    tree,
-    cutoff
 NeedsCompilation: no
-Roxygen: list(wrap = FALSE)
 License: GPL-2
