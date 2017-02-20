@@ -1,5 +1,4 @@
 Package: imputeR
-Type: Package
 Title: A General Imputation Framework in R
 Version: 2.0
 Date: 2017-02-07
