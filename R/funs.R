@@ -7,7 +7,6 @@
 #'    it should be a value between 0 and 1.
 #' @keywords simulation, imputation
 #' @return the same size matrix with simulated missing values.
-#' 
 #' @export
 #' @examples
 #' simdata <- matrix(rnorm(100), 10, 10)
@@ -42,7 +41,6 @@ SimIm <- function(data, p = 0.1) {
 #' @return the RMSE or NRMSE
 #' @seealso \code{\link{impute}} for the main imputation function, 
 #' \code{\link{mr}} for the misclassification error metric.
-#' 
 #' @export
 #' @examples
 #' data(parkinson)
@@ -178,7 +176,8 @@ plotIm <- function(imp, mis, true, ...) {
 #'  \item{time}{computational time}
 #'  \item{error}{the imputation error}
 #'  \item{conv}{the number of iterations to converge}
-#'  
+#'
+#' @importFrom utils txtProgressBar setTxtProgressBar
 #' @export
 #' @examples
 #' data(parkinson)
@@ -350,6 +349,7 @@ Detect <- function(x, n = 5) {
 #' @param type is the guessing type, including "mean" for mean imputation, 
 #' "median" for median imputation, "random" for random guess, and "majority" for
 #' majority imputation for categorical variables. 
+#' @importFrom stats median na.omit
 #' 
 #' @export
 #' @examples

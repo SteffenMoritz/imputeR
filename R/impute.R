@@ -30,7 +30,7 @@
 #' \item{conv}{the convergence status during the imputation}
 #' 
 #' @seealso \code{\link{SimIm}} for missing value simulation.
-#' 
+#' @importFrom stats na.omit predict
 #' @export
 #' @examples
 #' data(parkinson)

@@ -1,7 +1,8 @@
-#' Best subset for regression (both direction)
+#' @title Best subset for regression (both direction)
 #' 
-#' Best subset variable selection from both forward and backward
+#' @description Best subset variable selection from both forward and backward
 #' direction for continuous data
+#' 
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -22,9 +23,9 @@ stepBothR <- function(x, y) {
   return(model)
 }
 
-#' Best subset (backward direction) for regression
+#' @title Best subset (backward direction) for regression
 #' 
-#' Best subset variable selection (backward direction) for continuous data
+#' @description Best subset variable selection (backward direction) for continuous data
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -44,9 +45,9 @@ stepBackR <- function(x, y) {
   return(model)
 }
 
-#' Best subset (forward direction) for regression
+#' @title Best subset (forward direction) for regression
 #' 
-#' Best subset variable selection (forward direction) for continuous data
+#' @description Best subset variable selection (forward direction) for continuous data
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -68,9 +69,9 @@ stepForR <- function(x, y) {
 }
 
 
-#' LASSO for regression
+#' @title LASSO for regression
 #' 
-#' LASSO variable selection for continuous data
+#' @description LASSO variable selection for continuous data
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -88,9 +89,9 @@ lassoR <- function(x, y) {
   return(model)
 }
 
-#' Ridge shrinkage for regression
+#' @title Ridge shrinkage for regression
 #' 
-#' Ridge shrinkage variable selection for continuous data
+#' @description Ridge shrinkage variable selection for continuous data
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -109,13 +110,14 @@ ridgeR <- function(x, y) {
   return(model)
 }
 
-#' Boosting for regression
+#' @title Boosting for regression
 #' 
-#' boosting variable selection for continuous data
+#' @description boosting variable selection for continuous data
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
 #' @import mboost
+#' @importFrom stats AIC
 #' @export
 #' @examples
 #' data(parkinson)
@@ -132,9 +134,9 @@ glmboostR <- function(x, y) {
   return(model)
 }
 
-#' Principle component regression for imputation
+#' @title Principle component regression for imputation
 #' 
-#' Principle component regression method for imputation
+#' @description Principle component regression method for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -154,9 +156,9 @@ pcrR <- function(x, y) {
   return(model)
 }
 
-#' Partial Least Square regression for imputation
+#' @title Partial Least Square regression for imputation
 #' 
-#' Principle component regression method for imputation
+#' @description Principle component regression method for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -176,9 +178,9 @@ plsR <- function(x, y) {
   return(model)
 }
 
-#' Cubist method for imputation
+#' @title Cubist method for imputation
 #' 
-#' Quinlan's Cubist model for imputation
+#' @description Quinlan's Cubist model for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -205,10 +207,11 @@ CubistR <- function(x, y) {
   return(list(model = model, neighbors = cTune$bestTune$neighbors))
 }
 
-#' Best subset for classification (both direction)
+#' @title Best subset for classification (both direction)
 #' 
-#' Best subset variable selection from both forward and backward
+#' @description Best subset variable selection from both forward and backward
 #' direction for categorical data
+#' 
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -230,10 +233,11 @@ stepBothC <- function(x, y) {
   return(model)
 }
 
-#' Best subset for classification (backward)
+#' @title Best subset for classification (backward)
 #' 
-#' Best subset variable selection from both forward and backward
+#' @description Best subset variable selection from both forward and backward
 #' direction for categorical data
+#' 
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -255,10 +259,11 @@ stepBackC <- function(x, y) {
 }
 
 
-#' Best subset for classification (forward direction)
+#' @title Best subset for classification (forward direction)
 #' 
-#' Best subset variable selection from both forward and backward
+#' @description Best subset variable selection from both forward and backward
 #' direction for categorical data
+#' 
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -282,9 +287,10 @@ stepForC <- function(x, y) {
   return(model)
 }
 
-#' classification tree for imputation
+#' @title classification tree for imputation
 #' 
-#' classification tree for imputation
+#' @description classification tree for imputation
+#' 
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -303,9 +309,9 @@ rpartC <- function(x, y) {
   return(model)
 }
 
-#' regularised LDA method for imputation
+#' @title regularised LDA method for imputation
 #' 
-#' regularised LDA method for imputation
+#' @description regularised LDA method for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -330,9 +336,9 @@ rdaC <- function(x, y) {
   return(list(x = x , y = y, fit = fit, alpha = cv.alpha, delta = cv.delta))
 }
 
-#' logistic regression with lasso for imputation
+#' @title logistic regression with lasso for imputation
 #' 
-#' logistic regression with lasso for imputation
+#' @description logistic regression with lasso for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -351,9 +357,9 @@ lassoC <- function(x, y) {
   return(model)
 }
 
-#' Ridge regression with lasso for imputation
+#' @title Ridge regression with lasso for imputation
 #' 
-#' Ridge regression with lasso for imputation
+#' @description Ridge regression with lasso for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function
@@ -373,9 +379,9 @@ ridgeC <- function(x, y) {
 }
 
 
-#' boosting tree for imputation
+#' @title boosting tree for imputation
 #' 
-#' boosting tree for imputation
+#' @description boosting tree for imputation
 #' @param x predictor matrix
 #' @param y response vector
 #' @return a model object that can be used by the \code{\link{impute}} function

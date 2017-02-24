@@ -8,7 +8,6 @@
 #' and "majority" for the categorical part.
 #' @return the same size data matrix with no missing value.
 #' 
-#' 
 #' @export
 #' @examples
 #' data(tic)
