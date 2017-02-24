@@ -30,4 +30,3 @@ Detect(spect)
 data(tic)
 table(Detect(tic))
 }
-

@@ -39,4 +39,3 @@ Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
 \code{\link{impute}} for the main imputation function, 
 \code{\link{mr}} for the misclassification error metric.
 }
-

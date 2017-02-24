@@ -24,4 +24,3 @@ missdata <- SimIm(parkinson, 0.1)
 impdata <- impute(missdata, lmFun = "lassoR")
 }
 }
-

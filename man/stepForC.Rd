@@ -28,4 +28,3 @@ impdata <- impute(spect, cFun = "stepForC")
 \seealso{
 \code{\link{step}}, \code{\link{stepForR}}
 }
-

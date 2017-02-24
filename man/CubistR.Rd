@@ -28,4 +28,3 @@ impdata <- impute(missdata, lmFun = "CubistR")
 \seealso{
 \code{\link{cubist}}
 }
-

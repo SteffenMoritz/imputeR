@@ -33,4 +33,3 @@ Knowledge Discovery Approach to Automated Cardiac SPECT Diagnosis
 \emph{Artificial Intelligence in Medicine}, vol. 23:2, pp 149-169
 }
 \keyword{datasets}
-

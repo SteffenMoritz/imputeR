@@ -30,4 +30,3 @@ Rmse(impdata, missdata, parkinson, norm = TRUE)
 impdata2 <- guess(missdata, "random")
 Rmse(impdata2, missdata, parkinson, norm = TRUE)
 }
-

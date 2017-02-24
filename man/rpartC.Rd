@@ -27,4 +27,3 @@ impdata <- impute(spect, cFun = "rpartC")
 \seealso{
 \code{\link{rpart}}
 }
-

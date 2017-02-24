@@ -27,4 +27,3 @@ impdata <- impute(spect, cFun = "ridgeC")
 \seealso{
 \code{\link{logisticRidge}}
 }
-

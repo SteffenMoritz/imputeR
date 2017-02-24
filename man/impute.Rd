@@ -61,4 +61,3 @@ Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
 \seealso{
 \code{\link{SimIm}} for missing value simulation.
 }
-

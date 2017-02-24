@@ -28,4 +28,3 @@ impdata <- impute(spect, cFun = "gbmC")
 \seealso{
 \code{\link{gbm}}
 }
-

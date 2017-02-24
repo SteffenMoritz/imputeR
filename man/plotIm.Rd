@@ -36,4 +36,3 @@ Rmse(impdata$imp, missdata, parkinson, norm = T)
 plotIm(impdata$imp, missdata, parkinson)
 }
 }
-

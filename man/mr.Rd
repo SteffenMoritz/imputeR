@@ -34,4 +34,3 @@ impdata <- impute(missdata, cFun = "rpartC")
 mr(impdata$imp, missdata, spect)
 }
 }
-

@@ -27,4 +27,3 @@ impdata <- impute(missdata, lmFun = "plsR")
 \seealso{
 \code{\link{plsr}}
 }
-

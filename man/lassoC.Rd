@@ -27,4 +27,3 @@ impdata <- impute(spect, cFun = "lassoC")
 \seealso{
 \code{\link{cv.glmnet}} and \code{\link{glmnet}}
 }
-

@@ -27,4 +27,3 @@ impdata <- impute(spect, cFun = "rdaC")
 \seealso{
 \code{\link{rda}}
 }
-

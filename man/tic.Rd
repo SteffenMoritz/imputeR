@@ -27,4 +27,3 @@ The Insurance Company Case. Published by Sentient Machine Research, Amsterdam.
 Also a Leiden Institute of Advanced Computer Science Technical Report 2000-09. June 22, 2000.
 }
 \keyword{datasets}
-

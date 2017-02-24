@@ -34,4 +34,3 @@ missdata <- SimIm(parkinson, 0.1)
 }
 \keyword{imputation}
 \keyword{simulation,}
-

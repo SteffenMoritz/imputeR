@@ -33,4 +33,3 @@ impdata <- impute(tic, lmFun = "earth", cFun = "rpartC")
 mixError(impdata$imp, missdata, tic)
 }
 }
-

@@ -28,4 +28,3 @@ impdata <- impute(spect, cFun = "stepBothC")
 \seealso{
 \code{\link{step}}, \code{\link{stepBothR}}
 }
-

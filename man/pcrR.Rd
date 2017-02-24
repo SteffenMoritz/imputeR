@@ -27,4 +27,3 @@ impdata <- impute(missdata, lmFun = "pcrR")
 \seealso{
 \code{\link{pcr}}
 }
-

@@ -32,4 +32,3 @@ impdata <- mixGuess(missdata)
 nmissing(impdata)
 }
 }
-

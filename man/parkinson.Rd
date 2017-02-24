@@ -29,4 +29,3 @@ Exploiting Nonlinear Recurrence and Fractal Scaling Properties for Voice Disorde
 \emph{BioMedical Engineering OnLine}
 }
 \keyword{datasets}
-
