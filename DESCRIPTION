@@ -1,8 +1,15 @@
 Package: imputeR
 Title: A General Imputation Framework in R
-Version: 2.0
+Version: 2.1
 Date: 2017-02-07
-Author: Lingbing Feng, Steffen Moritz, Gen Nowak, Alan. H. Welsh, Terry. J. O'Neill
+Authors@R: 
+  c(
+  person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", comment = c(ORCID = "0000-0002-0085-1804")),
+person("Lingbing", "Feng"),
+person("Alan. H.", "Welsh"),
+person("J.", "O'Neill")
+  )
+Author: Lingbing Feng, Steffen Moritz (<https://orcid.org/0000-0002-0085-1804>), Gen Nowak, Alan. H. Welsh, Terry. J. O'Neill
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
 Description: General imputation framework based on
     variable selection methods including regularisation methods,
