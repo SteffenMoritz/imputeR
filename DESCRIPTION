@@ -1,16 +1,14 @@
 Package: imputeR
-Title: A General Imputation Framework in R
+Title: A General Multivariate Imputation Framework 
 Version: 2.1
-Date: 2017-07-26
+Date: 2018-10-02
 Authors@R: 
   c(
-  person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-0085-1804")),person("Lingbing", "Feng", role=c("aut")),person("Gen", "Nowak", role=c("ctb")),person("Alan. H.", "Welsh", role=c("ctb")),person("J.", "O'Neill", role=c("ctb"))
+  person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-0085-1804")),person("Lingbing", "Feng", role=c("aut")),person("Gen", "Nowak", role=c("ctb")),person("Alan. H.", "Welsh", role=c("ctb")),person("Terry. J.", "O'Neill", role=c("ctb"))
   )
 Author:Steffen Moritz [aut, cre] (<https://orcid.org/0000-0002-0085-1804>),  Lingbing Feng [aut], Gen Nowak [ctb], Alan. H. Welsh [ctb], Terry. J. O'Neill [ctb]
 Maintainer: Steffen Moritz <steffen.moritz10@gmail.com>
-Description: General imputation framework based on
-    variable selection methods including regularisation methods,
-    tree-based models and dimension reduction methods.
+Description: Multivariate Expectation-Maximization (EM) based imputation framework that offers several different algorithms. These include regularisation methods like Lasso and Ridge regression, tree-based models and dimensionality reduction methods like PCA and PLS.
 LazyData: yes
 Type: Package
 ByteCompile: TRUE
@@ -20,17 +18,20 @@ Repository: CRAN
 Depends:
     R (>= 3.1.0),
 Imports:
+    stats,
+    utils,
+    graphics,
+    reshape2
+Suggests:
+    testthat, 
+    rda,
     caret,
-    reshape2,
     glmnet,
     pls,
-    rda,
     Cubist,
     ridge,
     gbm,
     mboost,
     rpart
-Suggests:
-    testthat
 License: GPL-3
 RoxygenNote: 6.0.1

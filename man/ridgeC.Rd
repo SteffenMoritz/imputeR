@@ -12,7 +12,7 @@ ridgeC(x, y)
 \item{y}{response vector}
 }
 \value{
-a model object that can be used by the \code{\link{impute}} function
+a model object that can be used by the \code{\link[imputeR]{impute}} function
 }
 \description{
 Ridge regression with lasso for imputation
@@ -25,5 +25,5 @@ impdata <- impute(spect, cFun = "ridgeC")
 }
 }
 \seealso{
-\code{\link{logisticRidge}}
+\code{\link[ridge]{logisticRidge}}
 }

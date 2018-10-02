@@ -12,7 +12,7 @@ stepBothC(x, y)
 \item{y}{response vector}
 }
 \value{
-a model object that can be used by the \code{\link{impute}} function
+a model object that can be used by the \code{\link[imputeR]{impute}} function
 }
 \description{
 Best subset variable selection from both forward and backward
@@ -26,5 +26,5 @@ impdata <- impute(spect, cFun = "stepBothC")
 }
 }
 \seealso{
-\code{\link{step}}, \code{\link{stepBothR}}
+\code{\link[stats]{step}}, \code{\link[imputeR]{stepBothR}}
 }

@@ -12,7 +12,7 @@ plsR(x, y)
 \item{y}{response vector}
 }
 \value{
-a model object that can be used by the \code{\link{impute}} function
+a model object that can be used by the \code{\link[imputeR]{impute}} function
 }
 \description{
 Principle component regression method for imputation
@@ -25,5 +25,5 @@ impdata <- impute(missdata, lmFun = "plsR")
 }
 }
 \seealso{
-\code{\link{plsr}}
+\code{\link[pls]{plsr}}
 }

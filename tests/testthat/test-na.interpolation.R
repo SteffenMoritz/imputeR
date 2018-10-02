@@ -1,4 +1,4 @@
-context("na.interpolation")
+context("impute")
 
 test_that("Error for wrong input for option parameter",
           {

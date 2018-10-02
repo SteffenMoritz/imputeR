@@ -5,12 +5,12 @@
 \alias{imputeR-package}
 \title{imputeR-package description}
 \description{
-The imputeR Package offers a General Imputation Framework for R
+The imputeR package offers a General Multivariate Imputation Framework
 }
 \details{
-This package provides a general imputation framework based on
-variable selection methods including regularisation methods,
-tree-based models and dimension reduction methods.
+The imputeR package is a Multivariate Expectation-Maximization (EM) based imputation framework that offers several
+different algorithms. These include regularisation methods like Lasso and Ridge regression, tree-based models and dimensionality
+reduction methods like PCA and PLS.
 }
 \author{
 Steffen Moritz, Lingbing Feng, Gen Nowak, Alan. H. Welsh, Terry. J. O'Neill
