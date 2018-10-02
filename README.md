@@ -1,4 +1,4 @@
-[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
+[![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/SteffenMoritz/imputeR.svg?branch=master)](https://travis-ci.org/SteffenMoritz/imputeR)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/steffenmoritz/imputeR?branch=master&svg=true)](https://ci.appveyor.com/project/steffenmoritz/imputeR)
 [![CRAN Version](http://www.r-pkg.org/badges/version/imputeR)](https://cran.r-project.org/package=imputeR)
@@ -8,9 +8,7 @@
 <!-- [![codecov](https://codecov.io/gh/SteffenMoritz/imputeR/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeR) -->
 
 # imputeR: A General Imputation Framework
-Missing values imputation based on automated variable selection
 
------
 
 imputeR is an R package that provides a general framework for missing values imputation based on automated variable selection. 
 
