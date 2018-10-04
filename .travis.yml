@@ -5,6 +5,10 @@ cache: packages
 
 sudo: required
 
+env:
+  global:
+    - _R_CHECK_FORCE_SUGGESTS_: false
+
 r_github_packages:
   - jimhester/covr
   - SteffenMoritz/imputeR
