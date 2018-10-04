@@ -27,7 +27,7 @@ Calculate mixed error when the imputed matrix is mixed type
 data(tic)
 Detect(tic)
 missdata <- SimIm(tic, 0.3)
-\dontrun{
+\donttest{
 library(earth)
 impdata <- impute(tic, lmFun = "earth", cFun = "rpartC")
 mixError(impdata$imp, missdata, tic)

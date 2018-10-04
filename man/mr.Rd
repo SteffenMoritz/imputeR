@@ -24,7 +24,7 @@ the missing data and the true data.
 data(spect)
 Detect(spect)
 missdata <- SimIm(spect, 0.1)
-\dontrun{
+\donttest{
 require(cutoffR)
 HeatStruct(missdata)
 nmissing(missdata)

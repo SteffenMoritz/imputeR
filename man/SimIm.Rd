@@ -25,7 +25,7 @@ missingdata <- SimIm(simdata, p = 0.15)
 sum(is.na(missingdata))
 data(parkinson)
 # There is no missing values in the original parkinson data
-\dontrun{
+\donttest{
 HeatStruct(parkinson)
 }
 # Let's introduce some missing values into the dataset

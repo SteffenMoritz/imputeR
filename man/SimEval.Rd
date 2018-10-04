@@ -61,7 +61,7 @@ Evaluate imputation performance by simulation
 \examples{
 data(parkinson)
 # WARNING: simulation may take considerable time.
-\dontrun{
+\donttest{
 SimEval(parkinson, method = "lassoR")
 }
 }

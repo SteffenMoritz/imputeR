@@ -20,7 +20,7 @@ Best subset variable selection (backward direction) for continuous data
 \examples{
 data(parkinson)
 missdata <- SimIm(parkinson, 0.1)
-\dontrun{
+\donttest{
 impdata <- impute(missdata, lmFun = "stepBackR")
 }
 }

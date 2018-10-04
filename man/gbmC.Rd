@@ -21,7 +21,7 @@ boosting tree for imputation
 \examples{
 data(spect)
 missdata <- SimIm(spect, 0.1)
-\dontrun{
+\donttest{
 impdata <- impute(spect, cFun = "gbmC")
 }
 }

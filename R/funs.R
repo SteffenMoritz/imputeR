@@ -15,7 +15,7 @@
 #' sum(is.na(missingdata))
 #' data(parkinson)
 #' # There is no missing values in the original parkinson data
-#' \dontrun{
+#' \donttest{
 #' HeatStruct(parkinson)
 #' }
 #' # Let's introduce some missing values into the dataset
@@ -49,7 +49,7 @@ SimIm <- function(data, p = 0.1) {
 #' # visualise the missing pattern
 #' # HeatStruct(missdata, xlab = "variables", ylab = "values")
 #' # impute the missing values by LASSO
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "lassoR")
 #' # calculate the normalised RMSE for the imputation
 #' Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
@@ -84,7 +84,7 @@ Rmse <- function(imp, mis, true, norm = FALSE) {
 #' data(spect)
 #' Detect(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' require(cutoffR)
 #' HeatStruct(missdata)
 #' nmissing(missdata)
@@ -123,7 +123,7 @@ mr <- function(imp, mis, true) {
 #' # visualise the missing pattern
 #' # HeatStruct(missdata, xlab = "variables", ylab = "values")
 #' # impute the missing values by LASSO
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "lassoR")
 #' # calculate the normalised RMSE for the imputation
 #' Rmse(impdata$imp, missdata, parkinson, norm = T)
@@ -182,7 +182,7 @@ plotIm <- function(imp, mis, true, ...) {
 #' @examples
 #' data(parkinson)
 #' # WARNING: simulation may take considerable time.
-#' \dontrun{
+#' \donttest{
 #' SimEval(parkinson, method = "lassoR")
 #' }
 SimEval <- function(data, task = NULL, p = 0.1, n.sim = 100, ini = "mean", 
@@ -421,7 +421,7 @@ major <- function(x) {
 #' @export
 #' @examples
 #' data(parkinson)
-#' \dontrun{
+#' \donttest{
 #' orderbox(parkinson)
 #' }
 orderbox <- function(x, names = c("method", "MCE"), order.by = mean, 

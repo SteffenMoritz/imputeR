@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' data(tic)
-#' \dontrun{
+#' \donttest{
 #' missdata <- SimIm(tic, 0.1)
 #' require(cutoffR)
 #' nmissing(missdata)

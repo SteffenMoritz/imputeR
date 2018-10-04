@@ -11,7 +11,7 @@
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "stepBothR")
 #' }
 stepBothR <- function(x, y) {
@@ -34,7 +34,7 @@ stepBothR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "stepBackR")
 #' }
 stepBackR <- function(x, y) {
@@ -56,7 +56,7 @@ stepBackR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "stepForR")
 #' }
 stepForR <- function(x, y) {
@@ -80,7 +80,7 @@ stepForR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "lassoR")
 #' }
 lassoR <- function(x, y) {
@@ -107,7 +107,7 @@ lassoR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "ridgeR")
 #' }
 ridgeR <- function(x, y) {
@@ -134,7 +134,7 @@ ridgeR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "glmboostR")
 #' }
 glmboostR <- function(x, y) {
@@ -165,7 +165,7 @@ glmboostR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "pcrR")
 #' }
 pcrR <- function(x, y) {
@@ -193,7 +193,7 @@ pcrR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "plsR")
 #' }
 plsR <- function(x, y) {
@@ -225,7 +225,7 @@ plsR <- function(x, y) {
 #' @examples
 #' data(parkinson)
 #' missdata <- SimIm(parkinson, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(missdata, lmFun = "CubistR")
 #' }
 CubistR <- function(x, y) {
@@ -263,7 +263,7 @@ CubistR <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "stepBothC")
 #' }
 stepBothC <- function(x, y) {
@@ -289,7 +289,7 @@ stepBothC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "stepBackC")
 #' }
 stepBackC <- function(x, y) {
@@ -315,7 +315,7 @@ stepBackC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "stepForC")
 #' }
 stepForC <- function(x, y) {
@@ -343,7 +343,7 @@ stepForC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "rpartC")
 #' }
 rpartC <- function(x, y) {
@@ -372,7 +372,7 @@ rpartC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "rdaC")
 #' }
 rdaC <- function(x, y) {
@@ -405,7 +405,7 @@ rdaC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "lassoC")
 #' }
 lassoC <- function(x, y) {
@@ -433,7 +433,7 @@ lassoC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "ridgeC")
 #' }
 ridgeC <- function(x, y) {
@@ -464,7 +464,7 @@ ridgeC <- function(x, y) {
 #' @examples
 #' data(spect)
 #' missdata <- SimIm(spect, 0.1)
-#' \dontrun{
+#' \donttest{
 #' impdata <- impute(spect, cFun = "gbmC")
 #' }
 gbmC <- function(x, y) {

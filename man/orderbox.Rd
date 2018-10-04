@@ -33,7 +33,7 @@ Ordered boxplot for a data matrix
 }
 \examples{
 data(parkinson)
-\dontrun{
+\donttest{
 orderbox(parkinson)
 }
 }
