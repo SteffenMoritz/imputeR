@@ -4,7 +4,7 @@ vers <- paste("R package version", meta$Version)
 citHeader("To cite the imputeR package, use:")
 
 bibentry(bibtype = "Manual",
-  title = "imputeR: A General Imputation Framework in R",
+  title = "imputeR: A General Multivariate Imputation Framework",
   author = personList(as.person("Lingbing Feng"), as.person("Steffen Moritz"), as.person("Gen Nowak"), as.person("Alan. H. Welsh"), as.person("Terry. J. O'Neill")),
   year = year,
   note = vers,

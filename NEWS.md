@@ -2,10 +2,23 @@
 
   * Changes to remain on CRAN and comply with CRAN policy
 
-  * Description file updates
+  * Changed NEWS file to markup document
+  
+  * Bugfix for glmboostR
+  
+  * Improved Examples for most of the functions
+  
+  * Moved several packages from depends to suggests
+  
+  * Removed some suggests e.g. cutoffR
   
   * Changed NEWS file to markup document
   
+  * Replaced dontrun with donttest for long running examples
+  
+  * Description file: Improved package name and description 
+  
+  * Minor Readme updates
 
 ## Changes in Version 2.0
 

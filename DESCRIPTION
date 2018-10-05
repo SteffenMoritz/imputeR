@@ -1,7 +1,7 @@
 Package: imputeR
 Title: A General Multivariate Imputation Framework 
 Version: 2.1
-Date: 2018-10-02
+Date: 2018-10-05
 Authors@R: 
   c(
   person("Steffen", "Moritz", email="steffen.moritz10@gmail.com", role=c("aut", "cre"), comment = c(ORCID = "0000-0002-0085-1804")),person("Lingbing", "Feng", role=c("aut")),person("Gen", "Nowak", role=c("ctb")),person("Alan. H.", "Welsh", role=c("ctb")),person("Terry. J.", "O'Neill", role=c("ctb"))
