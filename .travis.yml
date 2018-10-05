@@ -5,8 +5,9 @@ cache: packages
 
 sudo: required
 
-r_binary_packages:
-  - ridge
+env:
+  global:
+    - _R_CHECK_FORCE_SUGGESTS_: false
 
 r_github_packages:
   - jimhester/covr

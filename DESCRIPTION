@@ -33,7 +33,6 @@ Suggests:
     gbm,
     mboost,
     rpart,
-    earth,
-    cutoffR
+    earth
 License: GPL-3
 RoxygenNote: 6.0.1

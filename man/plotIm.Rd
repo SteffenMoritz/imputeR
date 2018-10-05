@@ -26,13 +26,14 @@ and the original true data
 data(parkinson)
 # introduce 10\% random missing values into the parkinson data
 missdata <- SimIm(parkinson, 0.1)
-# visualise the missing pattern
-# HeatStruct(missdata, xlab = "variables", ylab = "values")
+
 # impute the missing values by LASSO
-\donttest{
-impdata <- impute(missdata, lmFun = "lassoR")
+\donttest{impdata <- impute(missdata, lmFun = "lassoR")
+
 # calculate the normalised RMSE for the imputation
 Rmse(impdata$imp, missdata, parkinson, norm = T)
+
+# Plot imputation performance
 plotIm(impdata$imp, missdata, parkinson)
 }
 }

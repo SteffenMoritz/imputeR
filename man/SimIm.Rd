@@ -19,18 +19,25 @@ the same size matrix with simulated missing values.
 This function randomly introduce some amount of missing values into a matrix.
 }
 \examples{
+# Create data without missing values as example
 simdata <- matrix(rnorm(100), 10, 10)
+
+# Now let's introduce some missing values into the dataset
 missingdata <- SimIm(simdata, p = 0.15)
+
 # count the number of missing values afterwards
 sum(is.na(missingdata))
-data(parkinson)
+
+#------------------
+
 # There is no missing values in the original parkinson data
-\donttest{
-HeatStruct(parkinson)
-}
+data(parkinson)
+
 # Let's introduce some missing values into the dataset
-# say, 10\% of random missing values
 missdata <- SimIm(parkinson, 0.1)
+
+# count the number of missing values afterwards
+sum(is.na(missdata))
 }
 \keyword{imputation}
 \keyword{simulation,}

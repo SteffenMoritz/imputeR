@@ -221,6 +221,8 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
             misY <- predict(Miss, misX, ncomp = 2, type = "response")
           } else if (lmFun == "CubistR") {
             misY <- predict(Miss$model, misX, neighbors = Miss$neighbors)
+          } else if (lmFun == "glmboostR") {
+            misY <- predict(Miss, newdata = as.data.frame(misX))
           } else {
             misY <- predict(Miss, misX)
           }

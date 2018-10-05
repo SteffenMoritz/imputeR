@@ -23,12 +23,8 @@ Naive imputation for mixed type data
 }
 \examples{
 data(tic)
-\donttest{
 missdata <- SimIm(tic, 0.1)
-require(cutoffR)
-nmissing(missdata)
-HeatStruct(missdata)
+sum(is.na(missdata))
 impdata <- mixGuess(missdata)
-nmissing(impdata)
-}
+sum(is.na(impdata))
 }

@@ -9,18 +9,25 @@
 #' @return the same size matrix with simulated missing values.
 #' @export
 #' @examples
+#' # Create data without missing values as example
 #' simdata <- matrix(rnorm(100), 10, 10)
+#' 
+#' # Now let's introduce some missing values into the dataset
 #' missingdata <- SimIm(simdata, p = 0.15)
+#' 
 #' # count the number of missing values afterwards
 #' sum(is.na(missingdata))
-#' data(parkinson)
+#' 
+#' #------------------
+#' 
 #' # There is no missing values in the original parkinson data
-#' \donttest{
-#' HeatStruct(parkinson)
-#' }
+#' data(parkinson)
+#' 
 #' # Let's introduce some missing values into the dataset
-#' # say, 10% of random missing values
 #' missdata <- SimIm(parkinson, 0.1)
+#' 
+#' # count the number of missing values afterwards
+#' sum(is.na(missdata))
 SimIm <- function(data, p = 0.1) {
   vec <- c(unlist(data))
   missing <- rbinom(length(vec), 1, p)
@@ -46,11 +53,10 @@ SimIm <- function(data, p = 0.1) {
 #' data(parkinson)
 #' # introduce 10% random missing values into the parkinson data
 #' missdata <- SimIm(parkinson, 0.1)
-#' # visualise the missing pattern
-#' # HeatStruct(missdata, xlab = "variables", ylab = "values")
+#' 
 #' # impute the missing values by LASSO
-#' \donttest{
-#' impdata <- impute(missdata, lmFun = "lassoR")
+#' \donttest{impdata <- impute(missdata, lmFun = "lassoR")
+#' 
 #' # calculate the normalised RMSE for the imputation
 #' Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
 #' }
@@ -85,9 +91,7 @@ Rmse <- function(imp, mis, true, norm = FALSE) {
 #' Detect(spect)
 #' missdata <- SimIm(spect, 0.1)
 #' \donttest{
-#' require(cutoffR)
-#' HeatStruct(missdata)
-#' nmissing(missdata)
+#' sum(is.na(missdata))
 #' # impute using rpart
 #' impdata <- impute(missdata, cFun = "rpartC")
 #' # calculate the misclassification error
@@ -120,13 +124,14 @@ mr <- function(imp, mis, true) {
 #' data(parkinson)
 #' # introduce 10% random missing values into the parkinson data
 #' missdata <- SimIm(parkinson, 0.1)
-#' # visualise the missing pattern
-#' # HeatStruct(missdata, xlab = "variables", ylab = "values")
+#' 
 #' # impute the missing values by LASSO
-#' \donttest{
-#' impdata <- impute(missdata, lmFun = "lassoR")
+#' \donttest{impdata <- impute(missdata, lmFun = "lassoR")
+#' 
 #' # calculate the normalised RMSE for the imputation
 #' Rmse(impdata$imp, missdata, parkinson, norm = T)
+#' 
+#' # Plot imputation performance
 #' plotIm(impdata$imp, missdata, parkinson)
 #' }
 plotIm <- function(imp, mis, true, ...) {
