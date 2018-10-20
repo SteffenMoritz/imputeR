@@ -7,7 +7,8 @@
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/imputeR)](https://cran.r-project.org/package=imputeR)
 <!-- [![codecov](https://codecov.io/gh/SteffenMoritz/imputeR/branch/master/graph/badge.svg)](https://codecov.io/gh/SteffenMoritz/imputeR) -->
 
-# imputeR: A General Multivariate Imputation Framework
+# imputeR: A General Multivariate Imputation Framework <img src="man/figures/imputeR-logo.png" align="right" width="181" height="209" alt="imputeR Logo" />
+
 
 
 imputeR is an R package that provides a general framework for missing values imputation based on automated variable selection. 
