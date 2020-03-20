@@ -5,8 +5,8 @@
 \title{Ordered boxplot for a data matrix}
 \usage{
 orderbox(x, names = c("method", "MCE"), order.by = mean,
-  decreasing = TRUE, notch = TRUE, col = "bisque", mar = c(7, 4.1, 4.1,
-  2), ...)
+  decreasing = TRUE, notch = TRUE, col = "bisque", mar = c(7, 4.1,
+  4.1, 2), ...)
 }
 \arguments{
 \item{x}{a matrix}

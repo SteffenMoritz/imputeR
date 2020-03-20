@@ -4,8 +4,8 @@
 \alias{impute}
 \title{General Imputation Framework in R}
 \usage{
-impute(missdata, lmFun = NULL, cFun = NULL, ini = NULL, maxiter = 100,
-  verbose = TRUE, conv = TRUE)
+impute(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
+  maxiter = 100, verbose = TRUE, conv = TRUE)
 }
 \arguments{
 \item{missdata}{data matrix with missing values encoded as NA.}

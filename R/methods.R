@@ -359,39 +359,6 @@ rpartC <- function(x, y) {
   return(model)
 }
 
-#' @title regularised LDA method for imputation
-#' 
-#' @description regularised LDA method for imputation
-#' @param x predictor matrix
-#' @param y response vector
-#' @return a model object that can be used by the \code{\link[imputeR]{impute}} function
-# #' @importFrom rda rda
-# #' @importFrom rda rda.cv
-#' @seealso \code{\link[rda]{rda}}
-#' @export
-#' @examples
-#' data(spect)
-#' missdata <- SimIm(spect, 0.1)
-#' \donttest{
-#' impdata <- impute(spect, cFun = "rdaC")
-#' }
-rdaC <- function(x, y) {
-  
-  #Check because rda is just in Suggests
-  if (!requireNamespace("rda", quietly = TRUE))
-  {
-    stop("Package \"rda\" needed for rdaC to work. Try to install it and then run your code again. You can install the package by executing: install.packages(\"rda\")",
-         call. = FALSE)
-  }
-  y <- as.numeric(y)
-  x <- t(x)
-  fit <- rda::rda(x, y)
-  cv <- rda::rda.cv(fit, x, y)
-  index <- arrayInd(which.min(cv$cv.err), dim(cv$cv.err))
-  cv.alpha <- cv$alpha[index[1]]
-  cv.delta <- cv$delta[index[2]]
-  return(list(x = x , y = y, fit = fit, alpha = cv.alpha, delta = cv.delta))
-}
 
 #' @title logistic regression with lasso for imputation
 #' 

@@ -234,7 +234,7 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
             # unnecessary
             misY <- factor(rep(names(summarY), sum(misi)))
           } else {
-            if (cFun %in% c("randomForest", "rdaC", "RRF")) {
+            if (cFun %in% c("randomForest", "RRF")) {
               obsY <- factor(obsY)
             }
             Miss <- cFUN(x = obsX, y = obsY)
@@ -246,10 +246,6 @@ impute <- function(missdata, lmFun = NULL, cFun = NULL, ini = NULL,
               misY <- ifelse(try[, 1] > try[, 2], 0, 1)
               } else if (cFun == "treeC") {
                 misY <- predict(Miss, misX, type = "class")
-              } else if (cFun == "rdaC") {
-                try <- predict(Miss$fit, Miss$x, Miss$y, xnew = t(misX), alpha = Miss$alpha,
-                              delta = Miss$delta, type = "posterior")
-                misY <- ifelse(try[, 1] > try[, 2], 0, 1)
               } else if (cFun == "gbmC") {
                 try <- predict(Miss$model, misX, Miss$best, type = "response")
                 misY <- ifelse(try < 0.5, 0, 1)

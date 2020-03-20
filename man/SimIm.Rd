@@ -39,5 +39,3 @@ missdata <- SimIm(parkinson, 0.1)
 # count the number of missing values afterwards
 sum(is.na(missdata))
 }
-\keyword{imputation}
-\keyword{simulation,}

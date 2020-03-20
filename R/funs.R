@@ -5,7 +5,6 @@
 #' @param data a data matrix to simulate
 #' @param p the percentage of missing values introduced into the data matrix
 #'    it should be a value between 0 and 1.
-#' @keywords simulation, imputation
 #' @return the same size matrix with simulated missing values.
 #' @export
 #' @examples

@@ -1,3 +1,9 @@
+## Changes in Version 2.2
+
+  * Removed package rda from Suggests since it was dropped from CRAN
+  
+  * Removed methods related to rda
+
 ## Changes in Version 2.1
 
   * Changes to remain on CRAN and comply with CRAN policy
