@@ -128,7 +128,7 @@ mr <- function(imp, mis, true) {
 #' \donttest{impdata <- impute(missdata, lmFun = "lassoR")
 #' 
 #' # calculate the normalised RMSE for the imputation
-#' Rmse(impdata$imp, missdata, parkinson, norm = T)
+#' Rmse(impdata$imp, missdata, parkinson, norm = TRUE)
 #' 
 #' # Plot imputation performance
 #' plotIm(impdata$imp, missdata, parkinson)
